@@ -1,4 +1,4 @@
-package math;
+package gameEngine.math;
 
 public class Point3D {
     private int LENGTH = 4;

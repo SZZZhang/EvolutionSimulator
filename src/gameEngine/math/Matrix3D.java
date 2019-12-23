@@ -1,8 +1,8 @@
-package math;
+package gameEngine.math;
 
 public class Matrix3D {
 
-    private int SIZE = 4;
+    public static int SIZE = 4;
     private float[][] M;
 
 
