@@ -12,7 +12,7 @@ public class Camera {
         this.rotation = rotation;
     }
 
-    public void update() {
+    public void update(Boolean bleh) {
         mouseX = Input.getMouseX();
         mouseY = Input.getMouseY();
 
@@ -26,6 +26,10 @@ public class Camera {
         prevMouseY = mouseY;
     }
 
+    public void update(GameObject) {
+
+
+    }
     public Vector3D getPosition() {
         return position;
     }

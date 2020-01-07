@@ -2,26 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55caa3ce-2aeb-479f-ab36-997fab3963c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gameEngine/Window.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gameEngine/graphics/Face.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gameEngine/graphics/MeshObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gameEngine/graphics/Shader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gameEngine/graphics/Texture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gameEngine/graphics/Lighting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/85-cottage_obj/cottage_obj.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/cottage_obj.mtl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/85-cottage_obj/cottage_obj.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/cottage_obj.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/GameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/GameEngine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Point3D.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Vector3D.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/GameEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OBJLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/math/Matrix3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/math/Matrix3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/math/Point3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/math/Point3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/math/Vector3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/math/Vector3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameEngine/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameEngine/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/GameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameEngine/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/Window.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,33 +19,53 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38498402">
+    <splitter split-orientation="horizontal" split-proportion="0.453505">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/gameEngine/Input.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="708">
-                  <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+                <state relative-caret-position="374">
+                  <caret line="26" selection-start-line="26" selection-end-line="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/GameEngine.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="901">
+                  <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
                   <folding>
-                    <element signature="e#1073#1074#0" expanded="true" />
-                    <element signature="e#1102#1103#0" expanded="true" />
-                    <element signature="e#1927#1928#0" expanded="true" />
-                    <element signature="e#1950#1951#0" expanded="true" />
-                    <element signature="e#2011#2012#0" expanded="true" />
-                    <element signature="e#2037#2038#0" expanded="true" />
-                    <element signature="e#2093#2094#0" expanded="true" />
-                    <element signature="e#2118#2119#0" expanded="true" />
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/gameEngine/GameEngine.java">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/Camera.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="615">
-                  <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+                <state relative-caret-position="527">
+                  <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/GameObject.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Lighting.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="55">
+                  <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -68,57 +76,59 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="vertical" split-proportion="0.5">
-          <split-first>
-            <leaf>
-              <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/Main.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="187">
-                      <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-                      <folding>
-                        <element signature="e#96#97#0" expanded="true" />
-                        <element signature="e#125#126#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf>
-              <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/gameEngine/Window.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1424">
-                      <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
-                      <folding>
-                        <element signature="imports" expanded="true" />
-                        <element signature="e#3997#3998#0" expanded="true" />
-                        <element signature="e#4041#4042#0" expanded="true" />
-                        <element signature="e#4077#4078#0" expanded="true" />
-                        <element signature="e#4134#4135#0" expanded="true" />
-                        <element signature="e#4402#4403#0" expanded="true" />
-                        <element signature="e#4441#4442#0" expanded="true" />
-                        <element signature="e#4478#4479#0" expanded="true" />
-                        <element signature="e#4513#4514#0" expanded="true" />
-                        <element signature="e#4542#4543#0" expanded="true" />
-                        <element signature="e#4570#4571#0" expanded="true" />
-                        <element signature="e#4600#4601#0" expanded="true" />
-                        <element signature="e#4629#4630#0" expanded="true" />
-                        <element signature="e#4661#4662#0" expanded="true" />
-                        <element signature="e#4689#4690#0" expanded="true" />
-                        <element signature="e#4720#4721#0" expanded="true" />
-                        <element signature="e#4749#4750#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/Window.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-184">
+                  <caret line="79" column="100" selection-start-line="79" selection-start-column="100" selection-end-line="79" selection-end-column="100" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/math/Matrix3D.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="799">
+                  <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/OpenGL_LWJGL/legacyGL/legacyGL.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="142">
+                  <caret line="138" column="25" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/MeshObject.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="527">
+                  <caret line="31" column="24" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Face.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -138,6 +148,11 @@
       <find>Vector2f</find>
       <find>NULL</find>
       <find>input</find>
+      <find>in</find>
+      <find>show</find>
+      <find>setPer</find>
+      <find>bind</find>
+      <find>buffer</find>
     </findStrings>
     <replaceStrings>
       <replace>Matrix3D</replace>
@@ -167,11 +182,14 @@
         <option value="$USER_HOME$/Downloads/OpenGL_LWJGL/legacyGL/Texture.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/graphics/MeshObject.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/graphics/Shader.java" />
-        <option value="$PROJECT_DIR$/src/gameEngine/math/Matrix3D.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/Input.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$USER_HOME$/Downloads/OpenGL_LWJGL/legacyGL/legacyGL.java" />
+        <option value="$PROJECT_DIR$/src/gameEngine/graphics/Lighting.java" />
+        <option value="$PROJECT_DIR$/src/gameEngine/math/Matrix3D.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/Window.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/GameEngine.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/gameEngine/Camera.java" />
       </list>
     </option>
   </component>
@@ -186,8 +204,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -220,10 +236,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577078291015" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578360083475" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -289,9 +307,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1517572" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1512247" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -300,7 +317,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.06831683" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.20843373" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -308,7 +325,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.02970297" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32871288" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32771084" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -323,20 +340,8 @@
     <entry file="file://$USER_HOME$/Downloads/Node.java" />
     <entry file="file://$USER_HOME$/Downloads/Queue.java" />
     <entry file="file://$USER_HOME$/Downloads/DNA.java" />
-    <entry file="file://$PROJECT_DIR$/hs_err_pid59240.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8296">
-          <caret line="488" column="14" selection-start-line="488" selection-start-column="14" selection-end-line="488" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hs_err_pid59219.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="133" column="10" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/hs_err_pid59240.log" />
+    <entry file="file://$PROJECT_DIR$/hs_err_pid59219.log" />
     <entry file="file://$PROJECT_DIR$/src/gameEngine/math/Point3D.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -357,19 +362,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/3DGraphics/src/OpenGL_LWJGL/src/intro/legacyGL/legacyGL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/OBJLoader.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/3DGraphics/src/OpenGL_LWJGL/src/intro/legacyGL/legacyGL.java" />
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/OBJLoader.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -377,26 +371,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/lala">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-202">
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#347#348#0" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#476#477#0" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#554#555#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/lala" />
     <entry file="file://$PROJECT_DIR$/src/assets/cottage_obj.mtl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -424,25 +399,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/OpenGL_LWJGL/legacyGL/legacyGL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Shader.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/MeshObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Texture.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -461,81 +419,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Face.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="170">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/math/Matrix3D.java">
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/MeshObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="527">
+          <caret line="31" column="24" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Face.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/OpenGL_LWJGL/legacyGL/legacyGL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="138" column="25" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Lighting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameEngine/Input.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="e#1073#1074#0" expanded="true" />
-            <element signature="e#1102#1103#0" expanded="true" />
-            <element signature="e#1927#1928#0" expanded="true" />
-            <element signature="e#1950#1951#0" expanded="true" />
-            <element signature="e#2011#2012#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-            <element signature="e#2093#2094#0" expanded="true" />
-            <element signature="e#2118#2119#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/math/Matrix3D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameEngine/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1424">
-          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="-184">
+          <caret line="79" column="100" selection-start-line="79" selection-start-column="100" selection-end-line="79" selection-end-column="100" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3997#3998#0" expanded="true" />
-            <element signature="e#4041#4042#0" expanded="true" />
-            <element signature="e#4077#4078#0" expanded="true" />
-            <element signature="e#4134#4135#0" expanded="true" />
-            <element signature="e#4402#4403#0" expanded="true" />
-            <element signature="e#4441#4442#0" expanded="true" />
-            <element signature="e#4478#4479#0" expanded="true" />
-            <element signature="e#4513#4514#0" expanded="true" />
-            <element signature="e#4542#4543#0" expanded="true" />
-            <element signature="e#4570#4571#0" expanded="true" />
-            <element signature="e#4600#4601#0" expanded="true" />
-            <element signature="e#4629#4630#0" expanded="true" />
-            <element signature="e#4661#4662#0" expanded="true" />
-            <element signature="e#4689#4690#0" expanded="true" />
-            <element signature="e#4720#4721#0" expanded="true" />
-            <element signature="e#4749#4750#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameEngine/GameEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+        <state relative-caret-position="901">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding>
-            <element signature="e#96#97#0" expanded="true" />
-            <element signature="e#125#126#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="527">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
         </state>
       </provider>
     </entry>
