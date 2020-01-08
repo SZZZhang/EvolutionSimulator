@@ -49,7 +49,7 @@ public class Input {
         return scrollY;
     }
 
-    public boolean isButtonDown(int button) {
+    public static boolean isButtonDown(int button) {
         return buttons[button];
     }
 

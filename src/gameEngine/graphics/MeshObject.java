@@ -2,15 +2,22 @@ package gameEngine.graphics;
 
 import gameEngine.math.Point3D;
 import gameEngine.math.Vector3D;
+import org.lwjgl.system.MemoryUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
 
 public class MeshObject {
+    private int vaoId, vboId, colourVboId, vertexCount;
+
     private ArrayList<Point3D> vertex;
     private ArrayList<Float[]> texCoords;
     private ArrayList<Vector3D> normals;
@@ -24,6 +31,63 @@ public class MeshObject {
         texCoords = new ArrayList();
         normals = new ArrayList();
         faces = new ArrayList();
+    }
+
+    public MeshObject(float[] coor, float[] colours) {
+
+
+        FloatBuffer verticesBuffer = null;
+        FloatBuffer colourBuffer = null;
+
+        try {
+            verticesBuffer = MemoryUtil.memAllocFloat(coor.length);
+            verticesBuffer.put(coor).flip();
+
+            vaoId = glGenVertexArrays();
+            glBindVertexArray(vaoId);
+
+            vboId = glGenBuffers();
+            glBindBuffer(GL_ARRAY_BUFFER, vboId);
+            glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
+            glEnableVertexAttribArray(0);
+            glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+            // Colour VBO
+            colourVboId = glGenBuffers();
+            colourBuffer = MemoryUtil.memAllocFloat(colours.length);
+            colourBuffer.put(colours).flip();
+            glBindBuffer(GL_ARRAY_BUFFER, colourVboId);
+            glBufferData(GL_ARRAY_BUFFER, colourBuffer, GL_STATIC_DRAW);
+            glEnableVertexAttribArray(1);
+            glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
+
+            glBindVertexArray(0);
+        } finally {
+            if (verticesBuffer != null) {
+                MemoryUtil.memFree(verticesBuffer);
+            }
+        }
+    }
+
+    public int getVaoId() {
+        return vaoId;
+    }
+
+    public int getVertexCount() {
+        return vertexCount;
+    }
+
+    public void cleanUp() {
+        glDisableVertexAttribArray(0);
+
+        //Delete the VBO
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glDeleteBuffers(vboId);
+
+        //Delete the VAO
+        glBindVertexArray(0);
+        glDeleteVertexArrays(vaoId);
     }
 
     public void draw() {
@@ -102,4 +166,6 @@ public class MeshObject {
             e.printStackTrace();
         }
     }
+
+
 }

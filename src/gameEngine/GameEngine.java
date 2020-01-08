@@ -2,10 +2,15 @@ package gameEngine;
 
 import gameEngine.graphics.Lighting;
 import gameEngine.graphics.MeshObject;
+import gameEngine.graphics.Renderer;
+import gameEngine.math.Vector3D;
 import org.lwjgl.Version;
+
+import java.util.ArrayList;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.GL_TRUE;
 
 public class GameEngine implements Runnable {
 
@@ -14,13 +19,27 @@ public class GameEngine implements Runnable {
 
     public int FPS = 1;
     public Window window;
-    public Thread game;
     public Lighting lighting;
+    public Camera camera;
+    public Renderer renderer;
 
-    public void start() {
-        game = new Thread(this, "game");
-        game.start();
-    }
+    float[] vertices = new float[]{
+            -0.5f,  0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+         0.5f,  0.5f, 0.0f,
+         0.5f,  0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+    };
+
+    float[] colours = new float[]{
+    0.5f, 0.0f, 0.0f,
+    0.0f, 0.5f, 0.0f,
+    0.0f, 0.0f, 0.5f,
+    0.0f, 0.5f, 0.5f,
+};
+
+    GameObject house = new GameObject(new Vector3D(0, 0, -50), new Vector3D(0, 0, 0), new Vector3D(0, 0, 0));
 
     public void run() {
 
@@ -32,40 +51,36 @@ public class GameEngine implements Runnable {
         update();
 
         // Free the window callbacks and destroy the window
-		glfwFreeCallbacks(window.getWindow());
-		glfwDestroyWindow(window.getWindow());
+        glfwFreeCallbacks(window.getWindow());
+        glfwDestroyWindow(window.getWindow());
 
-		// Terminate GLFW and free the error callback
-		glfwTerminate();
-		glfwSetErrorCallback(null).free();
+        // Terminate GLFW and free the error callback
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
 
     }
 
     private void init() {
+
         window = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, "DNA");
         window.create();
-        lighting = new Lighting();
-        lighting.init();
+        renderer = new Renderer();
+        renderer.init();
+        camera = new Camera(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0));
     }
 
     private void update() {
 
-        double millisecsPerFrame = 1E3 / FPS;
-        long prevTime = System.currentTimeMillis();
-        long steps = 0;
-
         while (!glfwWindowShouldClose(window.getWindow())) {
             long loopStartTime = System.currentTimeMillis();
-            long deltaT = loopStartTime - prevTime;
-            prevTime = loopStartTime;
-            steps += deltaT;
 
-            while(steps >= millisecsPerFrame) {
-                window.update();
-                steps -= millisecsPerFrame;
-            }
+            ArrayList<MeshObject> objects = new ArrayList<>();
+            objects.add(new MeshObject(vertices, colours));
+            renderer.render(window, objects);
 
-            sync(loopStartTime); //makes the thread sleep until next frame
+            window.update();
+
+            sync(loopStartTime); //makes the thread sleep until next update
         }
     }
 

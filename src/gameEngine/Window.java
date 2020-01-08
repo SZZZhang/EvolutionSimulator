@@ -53,8 +53,14 @@ public class Window {
         if (!glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
 
-        // Configure GLFW
-        glfwDefaultWindowHints(); // optional, the current window hints are already the default
+        // Configure
+        //Sets OpenGL Context to version 3.2 since it is not by default on Mac
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
@@ -77,18 +83,9 @@ public class Window {
         glfwMakeContextCurrent(window);
         // Enable v-sync
         glfwSwapInterval(1);
-    cottage = new MeshObject("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/cottage_obj.obj");
 
         // Make the window visible
         glfwShowWindow(window);
-
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        setPerspective((float)(Math.toRadians(40)), width/height, 0.01f, 100f);
-
-        glEnable(GL_TEXTURE_2D);	// enable texture mapping
-		glEnable(GL_SMOOTH);
-		glEnable(GL_DEPTH_TEST);
 
         //clears screen
         GL11.glClearColor(bgColor.getX(), bgColor.getY(), bgColor.getZ(), 1.0f);
@@ -112,23 +109,7 @@ public class Window {
     }
 
     public void update() {
-        GL11.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-
-
-
-        // draw your scene here...
-        //glColor3f(1, 0, 0);
-        glPushMatrix();
-        glTranslatef(0,0,-50);
-        //glRotatef(1, 1,0,0);
-        cottage.draw();
-        glPopMatrix();
-
         glfwSwapBuffers(this.getWindow());
-
         GLFW.glfwPollEvents();
     }
 
