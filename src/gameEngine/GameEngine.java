@@ -24,20 +24,20 @@ public class GameEngine implements Runnable {
     public Renderer renderer;
 
     float[] vertices = new float[]{
-            -0.5f,  0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-         0.5f,  0.5f, 0.0f,
-         0.5f,  0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
+            -0.5f, 0.5f, 0.0f,
+            -0.5f, -0.5f, 0.0f,
+            0.5f, 0.5f, 0.0f,
+            0.5f, 0.5f, 0.0f,
+            -0.5f, -0.5f, 0.0f,
+            0.5f, -0.5f, 0.0f,
     };
 
     float[] colours = new float[]{
-    0.5f, 0.0f, 0.0f,
-    0.0f, 0.5f, 0.0f,
-    0.0f, 0.0f, 0.5f,
-    0.0f, 0.5f, 0.5f,
-};
+            0.5f, 0.0f, 0.0f,
+            0.0f, 0.5f, 0.0f,
+            0.0f, 0.0f, 0.5f,
+            0.0f, 0.5f, 0.5f,
+    };
 
     GameObject house = new GameObject(new Vector3D(0, 0, -50), new Vector3D(0, 0, 0), new Vector3D(0, 0, 0));
 

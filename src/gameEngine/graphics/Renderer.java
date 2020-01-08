@@ -27,8 +27,11 @@ public class Renderer {
         //draw objects
         for (MeshObject mesh : meshes) {
             glBindVertexArray(mesh.getVaoId());
-            glDrawElements(GL_TRIANGLES, mesh.getVertexCount(), GL_UNSIGNED_INT, 0);
+            //glDrawElements(GL_TRIANGLES, mesh.getVertexCount(), GL_UNSIGNED_INT, 0);
+            glDrawArrays(GL_TRIANGLES, 0, mesh.getVertexCount());
         }
+
+        //TODO program doesnt display anything
 
         //restore state
         glBindVertexArray(0);

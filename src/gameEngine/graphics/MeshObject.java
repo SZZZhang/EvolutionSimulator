@@ -51,16 +51,16 @@ public class MeshObject {
             glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
             glEnableVertexAttribArray(0);
             glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            //glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             // Colour VBO
-            colourVboId = glGenBuffers();
+           /* colourVboId = glGenBuffers();
             colourBuffer = MemoryUtil.memAllocFloat(colours.length);
             colourBuffer.put(colours).flip();
             glBindBuffer(GL_ARRAY_BUFFER, colourVboId);
             glBufferData(GL_ARRAY_BUFFER, colourBuffer, GL_STATIC_DRAW);
             glEnableVertexAttribArray(1);
-            glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
+            glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);*/
 
             glBindVertexArray(0);
         } finally {
