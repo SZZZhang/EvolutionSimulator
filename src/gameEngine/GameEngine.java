@@ -1,6 +1,7 @@
 package gameEngine;
 
 import gameEngine.graphics.Lighting;
+import gameEngine.graphics.Mesh;
 import gameEngine.graphics.MeshObject;
 import gameEngine.graphics.Renderer;
 import gameEngine.math.Vector3D;
@@ -47,25 +48,23 @@ public class GameEngine implements Runnable {
         //game = new Thread(this, "game");
         //game.start();
 
-        init();
-        update();
-
-        // Free the window callbacks and destroy the window
-        glfwFreeCallbacks(window.getWindow());
-        glfwDestroyWindow(window.getWindow());
-
-        // Terminate GLFW and free the error callback
-        glfwTerminate();
-        glfwSetErrorCallback(null).free();
+        try {
+            init();
+            update();
+        } finally {
+            cleanup();
+        }
 
     }
 
     private void init() {
+        ArrayList<Mesh> objects = new ArrayList<>();
+        objects.add(new Mesh(vertices));
 
         window = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, "DNA");
         window.create();
         renderer = new Renderer();
-        renderer.init();
+        renderer.init(objects);
         camera = new Camera(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0));
     }
 
@@ -74,17 +73,15 @@ public class GameEngine implements Runnable {
         while (!glfwWindowShouldClose(window.getWindow())) {
             long loopStartTime = System.currentTimeMillis();
 
-            ArrayList<MeshObject> objects = new ArrayList<>();
-            objects.add(new MeshObject(vertices, colours));
-            renderer.render(window, objects);
+            renderer.render(window);
 
             window.update();
 
-            sync(loopStartTime); //makes the thread sleep until next update
+            sleep(loopStartTime); //makes the thread sleep until next update
         }
     }
 
-    private void sync(double loopStartTime) {
+    private void sleep(double loopStartTime) {
         float loopSlot = 1f / FPS;
         int sleepInterval = 2; // time that the thread sleeps between checks (milliseconds)
 
@@ -96,5 +93,10 @@ public class GameEngine implements Runnable {
                 System.out.println("Uh oh, sync method's sleep was interrupted!");
             }
         }
+    }
+
+    private void cleanup() {
+        renderer.cleanup();
+        window.destroy();
     }
 }

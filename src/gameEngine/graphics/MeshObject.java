@@ -7,6 +7,7 @@ import org.lwjgl.system.MemoryUtil;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,20 +34,24 @@ public class MeshObject {
         faces = new ArrayList();
     }
 
-    public MeshObject(float[] coor, float[] colours) {
+    public MeshObject(float[] coor, float[] colours, int[] indices) {
 
 
         FloatBuffer verticesBuffer = null;
         FloatBuffer colourBuffer = null;
+        IntBuffer indicesBuffer = null;
+        //FloatBuffer colourBuffer = null;
 
         try {
-            verticesBuffer = MemoryUtil.memAllocFloat(coor.length);
-            verticesBuffer.put(coor).flip();
 
+            //verticesBuffer.put(coor).flip();
+            vertexCount = indices.length;
             vaoId = glGenVertexArrays();
             glBindVertexArray(vaoId);
 
             vboId = glGenBuffers();
+            verticesBuffer = MemoryUtil.memAllocFloat(coor.length);
+            verticesBuffer.put(coor).flip();
             glBindBuffer(GL_ARRAY_BUFFER, vboId);
             glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
             glEnableVertexAttribArray(0);
@@ -62,6 +67,7 @@ public class MeshObject {
             glEnableVertexAttribArray(1);
             glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);*/
 
+           glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindVertexArray(0);
         } finally {
             if (verticesBuffer != null) {

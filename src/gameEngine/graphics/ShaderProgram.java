@@ -1,4 +1,4 @@
-//not my code. source: https://ahbejarano.gitbook.io/lwjglgamedev/chapter4
+//source: https://ahbejarano.gitbook.io/lwjglgamedev/chapter4
 
 package gameEngine.graphics;
 
