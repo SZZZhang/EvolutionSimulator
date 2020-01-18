@@ -5,6 +5,7 @@ import gameEngine.GameEngine;
 import gameEngine.GameObject;
 import gameEngine.Window;
 import gameEngine.math.Matrix4f;
+import gameEngine.math.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
@@ -20,7 +21,7 @@ public class Renderer {
     private static final float Z_FAR = 1000.f;
 
 
-    public void render(Window window, ArrayList<GameObject> gameObjects) {
+    public void render(Window window, ArrayList<GameObject> gameObjects, SceneLight sceneLight) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         shader.bind();
@@ -35,6 +36,7 @@ public class Renderer {
                 GameEngine.camera.getRotation());
 
         shader.setUniform("texture_sampler", 0);
+        renderLights(viewMatrix, sceneLight);
 
         //draw objects
         for (GameObject object : gameObjects) {
@@ -45,6 +47,20 @@ public class Renderer {
         }
 
         shader.unbind();
+    }
+
+    private void renderLights(Matrix4f viewMatrix, SceneLight sceneLight) {
+
+        // Get a copy of the directional light object and transform its position to view coordinates
+        DirectionalLight currDirLight = new DirectionalLight(sceneLight.getDirectionalLight());
+        Vector3f dir = new Vector3f(currDirLight.getDirection().getX(),
+                currDirLight.getDirection().getY(),
+                currDirLight.getDirection().getZ());
+
+        dir = Matrix4f.multiply(dir, viewMatrix);
+
+        currDirLight.setDirection(new Vector3f(dir.getX(), dir.getY(), dir.getZ()));
+        shader.setUniform("directionalLight", currDirLight);
     }
 
     public void init(Window window) {
@@ -60,7 +76,9 @@ public class Renderer {
             //create uniforms
             shader.createUniform("projectionMatrix");
             shader.createUniform("modelViewMatrix");
+
             shader.createUniform("texture_sampler");
+            shader.createDirectionalLightUniform("directionalLight");
 
             window.setBackgroundColor(0.0f, 0.0f, 0.0f);
 
@@ -78,7 +96,7 @@ public class Renderer {
         if (shader != null) {
             shader.cleanup();
         }
-        for(GameObject object: gameObjects) {
+        for (GameObject object : gameObjects) {
             object.getMesh().cleanUp();
         }
     }

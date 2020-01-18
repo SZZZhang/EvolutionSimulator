@@ -37,6 +37,8 @@ public class Mesh {
         FloatBuffer posBuffer = null;
         FloatBuffer textCoordsBuffer = null;
         IntBuffer indicesBuffer = null;
+
+
         try {
             this.texture = texture;
             vertexCount = indices.length;

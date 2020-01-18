@@ -24,6 +24,12 @@ public class Vector3f {
         return (float) Math.sqrt(getX() + getY() + getZ());
     }
 
+    public float[] getAll() {
+        return V;
+    }
+
+    ;
+
     //adds vector and point
     public Point3D add(Point3D P) {
         return new Point3D(this.getX() + P.getX(), this.getY()
@@ -69,6 +75,10 @@ public class Vector3f {
         return V[2];
     }
 
+    public float getW() {
+        return V[3];
+    }
+
     public void setX(float x) {
         V[0] = x;
     }
@@ -82,7 +92,7 @@ public class Vector3f {
     }
 
     public void setW(float w) {
-        V[3] = 2;
+        V[3] = w;
     }
 
     public void set(float x, float y, float z) {

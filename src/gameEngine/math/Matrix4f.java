@@ -4,6 +4,7 @@ import gameEngine.GameObject;
 
 import java.nio.FloatBuffer;
 import java.util.Arrays;
+import java.util.Vector;
 
 /*public class Matrix4f {
 
@@ -239,14 +240,14 @@ public class Matrix4f {
         Matrix4f result = Matrix4f.identity();
 
         float tanFOV = (float) Math.tan(Math.toRadians(fov / 2));
-		float range = far - near;
+        float range = far - near;
 
-		result.set(0, 0, 1.0f / (aspect * tanFOV));
-		result.set(1, 1, 1.0f / tanFOV);
-		result.set(2, 2, -((far + near) / range));
-		result.set(2, 3, -1.0f);
-		result.set(3, 2, -((2 * far * near) / range));
-		result.set(3, 3, 0.0f);
+        result.set(0, 0, 1.0f / (aspect * tanFOV));
+        result.set(1, 1, 1.0f / tanFOV);
+        result.set(2, 2, -((far + near) / range));
+        result.set(2, 3, -1.0f);
+        result.set(3, 2, -((2 * far * near) / range));
+        result.set(3, 3, 0.0f);
 
         return result;
     }
@@ -281,6 +282,7 @@ public class Matrix4f {
         return Matrix4f.multiply(view, world);
     }
 
+    //multiplies matrix and matrix
     public static Matrix4f multiply(Matrix4f matrix, Matrix4f other) {
         Matrix4f result = Matrix4f.identity();
 
@@ -293,6 +295,21 @@ public class Matrix4f {
             }
         }
 
+        return result;
+    }
+
+    //multiplies matrix and vector
+    public static Vector3f multiply(Vector3f vector, Matrix4f matrix) {
+        Vector3f result = new Vector3f();
+
+        int x = 0, y = 0, z = 0, w = 0;
+        for (int i = 0; i < SIZE; i++) {
+            x += matrix.get(0, i) * vector.getAll()[i];
+            y += matrix.get(1, i) * vector.getAll()[i];
+            z += matrix.get(2, i) * vector.getAll()[i];
+            w += matrix.get(3, i) * vector.getAll()[i];
+        }
+        result.set(x, y, z);
         return result;
     }
 
