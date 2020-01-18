@@ -5,7 +5,8 @@ import org.lwjgl.glfw.GLFW;
 
 public class Camera {
     private Vector3f position, rotation;
-    private float MOUSE_SENSITIVITY = 0.05f;
+    private float MOUSE_SENSITIVITY = 0.1f;
+    private float MOUSE_MOVE_FACTOR = 1f;
     private float dist;  //distance between camera and object
     public float VAngle, HAngle; //vertical and horizontal angles between camera and target object
     private double prevMouseX = 0, prevMouseY = 0, mouseX = 0, mouseY = 0;
@@ -20,9 +21,29 @@ public class Camera {
         this.position = new Vector3f(0, 0, 0);
         this.rotation = new Vector3f(0, 0, 0);
     }
-
     public void update() {
+        if(Input.isKeyDown(GLFW.GLFW_KEY_UP)) {
+            position = position.add(new Vector3f(0, 0,-MOUSE_MOVE_FACTOR));
+            System.out.println("MOVED");
+        }
+        if(Input.isKeyDown(GLFW.GLFW_KEY_DOWN)) {
+            position = position.add(new Vector3f(0, 0,MOUSE_MOVE_FACTOR));
+            System.out.println(position.getZ());
+        }
+        if(Input.isKeyDown(GLFW.GLFW_KEY_A)) {
+            position = position.add(new Vector3f(-MOUSE_MOVE_FACTOR, 0,0));
+        }
+        if(Input.isKeyDown(GLFW.GLFW_KEY_D)) {
+            position = position.add(new Vector3f(MOUSE_MOVE_FACTOR, 0,0));
+        }
+        if(Input.isKeyDown(GLFW.GLFW_KEY_W)) {
+            position = position.add(new Vector3f(0, MOUSE_MOVE_FACTOR, 0));
+        }
+        if(Input.isKeyDown(GLFW.GLFW_KEY_S)) {
+            position = position.add(new Vector3f(0 , -MOUSE_MOVE_FACTOR, 0));
+        }
 
+        //mouse
         if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT) &&
                 isHoldingButtonDown[GLFW.GLFW_MOUSE_BUTTON_LEFT]) {
 
@@ -53,6 +74,12 @@ public class Camera {
             System.out.println("zoomed out");
         }
     }
+
+    /*
+    public void update() {
+
+
+    }*/
 
    /* public void update() {
 

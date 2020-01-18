@@ -91,15 +91,14 @@ public class GameEngine implements Runnable {
 
         renderer = new Renderer();
         renderer.init(window);
-        camera = new Camera(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0));
+        camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
         input = new Input();
 
         objects = new ArrayList<>();
         GameObject square = new GameObject(new Mesh(positions, colours, indices));
         square.setMesh(new Mesh(positions, colours, indices));
-        square.setPosition(new
-                Vector3f(0, 0, -2f));//TODO change
-        //square.setScale(new Vector3f(.5f,.5f,.5f));
+        //square.setPosition(new Vector3f(0, 0, 0f));//TODO change
+        square.setScale(new Vector3f(.2f,.2f,.2f));
         objects.add(square);
     }
 
@@ -160,7 +159,7 @@ public class GameEngine implements Runnable {
     }
 
     private void cleanup() {
-        renderer.cleanup();
+        renderer.cleanup(objects);
         window.destroy();
     }
 }

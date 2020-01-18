@@ -8,17 +8,18 @@ import org.lwjgl.system.MemoryStack;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
-
 import static org.lwjgl.opengl.GL20.*;
+import org.lwjgl.system.MemoryStack;
 
 public class ShaderProgram {
 
-    private final Map<String, Integer> uniforms;
     private final int programId;
 
     private int vertexShaderId;
 
     private int fragmentShaderId;
+
+    private final Map<String, Integer> uniforms;
 
     public ShaderProgram() throws Exception {
         programId = glCreateProgram();

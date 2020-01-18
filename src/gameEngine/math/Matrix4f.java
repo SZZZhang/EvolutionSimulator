@@ -239,14 +239,14 @@ public class Matrix4f {
         Matrix4f result = Matrix4f.identity();
 
         float tanFOV = (float) Math.tan(Math.toRadians(fov / 2));
-        float range = far - near;
+		float range = far - near;
 
-        result.set(0, 0, 1.0f / (aspect * tanFOV));
-        result.set(1, 1, 1.0f / tanFOV);
-        result.set(2, 2, -(far + near) / (far - near));
-        result.set(2, 3, -1.0f);
-        result.set(3, 2, (-(2 * far * near) / (far - near)));
-        result.set(3, 3, 0.0f);
+		result.set(0, 0, 1.0f / (aspect * tanFOV));
+		result.set(1, 1, 1.0f / tanFOV);
+		result.set(2, 2, -((far + near) / range));
+		result.set(2, 3, -1.0f);
+		result.set(3, 2, -((2 * far * near) / range));
+		result.set(3, 3, 0.0f);
 
         return result;
     }
@@ -320,11 +320,11 @@ public class Matrix4f {
     }
 
     public float get(int x, int y) {
-        return elements[y * SIZE + x];
+        return elements[x * SIZE + y];
     }
 
     public void set(int x, int y, float value) {
-        elements[y * SIZE + x] = value;
+        elements[x * SIZE + y] = value;
     }
 
     public float[] getAll() {

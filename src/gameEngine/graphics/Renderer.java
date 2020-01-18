@@ -15,10 +15,9 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Renderer {
     private ShaderProgram shader;
-    private static final float FOV = (float) Math.toRadians(60.0f);
-    private static final float Z_NEAR = -1.99f;
-    private static final float Z_FAR = -1000.f;
-    private Matrix4f projectionMatrix;
+    private static final float FOV = (float) Math.toRadians(70.0f);
+    private static final float Z_NEAR = 0.1f;
+    private static final float Z_FAR = 1000.f;
 
 
     public void render(Window window, ArrayList<GameObject> gameObjects) {
@@ -72,9 +71,12 @@ public class Renderer {
     }
 
 
-    public void cleanup() {
+    public void cleanup(ArrayList<GameObject> gameObjects) {
         if (shader != null) {
             shader.cleanup();
+        }
+        for(GameObject object: gameObjects) {
+            object.getMesh().cleanUp();
         }
     }
 

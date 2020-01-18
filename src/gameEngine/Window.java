@@ -103,6 +103,7 @@ public class Window {
         GLFW.glfwSetCursorPosCallback(window, input.getMouseMoveCallback());
         GLFW.glfwSetMouseButtonCallback(window, input.getMouseButtonsCallback());
         GLFW.glfwSetScrollCallback(window, input.getMouseScrollCallback());
+        GLFW.glfwSetKeyCallback(window, input.getKeyboardCallback());
         GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
     }
 
