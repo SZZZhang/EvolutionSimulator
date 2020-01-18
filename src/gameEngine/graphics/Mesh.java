@@ -35,6 +35,8 @@ public class Mesh {
         FloatBuffer posBuffer = null;
         FloatBuffer colourBuffer = null;
         IntBuffer indicesBuffer = null;
+
+
         try {
             vertexCount = indices.length;
 

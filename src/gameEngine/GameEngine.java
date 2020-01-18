@@ -1,8 +1,6 @@
 package gameEngine;
 
-import gameEngine.graphics.Lighting;
-import gameEngine.graphics.Mesh;
-import gameEngine.graphics.Renderer;
+import gameEngine.graphics.*;
 import gameEngine.math.Vector3f;
 import org.lwjgl.Version;
 
@@ -12,8 +10,11 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class GameEngine implements Runnable {
 
-    // The window handle
+    // constants
     private int WINDOW_HEIGHT = 800, WINDOW_WIDTH = 1000;
+    private Vector3f LIGHT_COLOR_WHITE = new Vector3f(1, 1, 1);
+    private float LIGHT_INTENSITY = 0.1f;
+    private Vector3f LIGHT_POSITION = new Vector3f(-1, 0, 0);
 
     public int FPS = 1;
     public Window window;
@@ -21,6 +22,11 @@ public class GameEngine implements Runnable {
     public static Camera camera;
     public Input input;
     public Renderer renderer;
+
+    private DirectionalLight directionalLight;
+    private SceneLight sceneLight;
+    private float lightAngle = -90;
+
     ArrayList<GameObject> objects;
 
     float[] positions = new float[]{
@@ -91,14 +97,18 @@ public class GameEngine implements Runnable {
 
         renderer = new Renderer();
         renderer.init(window);
-        camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
+        camera = new Camera(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0));
         input = new Input();
+
+        //set up direction lighting
+        sceneLight = new SceneLight();
+        sceneLight.setDirectionalLight(new DirectionalLight(LIGHT_COLOR_WHITE, LIGHT_POSITION, LIGHT_INTENSITY));
 
         objects = new ArrayList<>();
         GameObject square = new GameObject(new Mesh(positions, colours, indices));
         square.setMesh(new Mesh(positions, colours, indices));
         //square.setPosition(new Vector3f(0, 0, 0f));//TODO change
-        square.setScale(new Vector3f(.2f,.2f,.2f));
+        square.setScale(new Vector3f(.01f, .01f, .01f));
         objects.add(square);
     }
 
@@ -109,7 +119,7 @@ public class GameEngine implements Runnable {
             long loopStartTime = System.currentTimeMillis();
 
             camera.update();
-            renderer.render(window, objects);
+            renderer.render(window, objects, sceneLight);
 
 
             window.update();
@@ -133,6 +143,33 @@ public class GameEngine implements Runnable {
     }
 
     private void gameUpdate() {
+
+        // Update directional light direction, intensity and colour
+
+        DirectionalLight directionalLight = sceneLight.getDirectionalLight();
+        lightAngle += 1.1f;
+        if (lightAngle > 90) {
+            directionalLight.setIntensity(0);
+            if (lightAngle >= 360) {
+                lightAngle = -90; //TODO add scene light class
+            }
+        } else if (lightAngle <= -80 || lightAngle >= 80) {
+            float factor = 1 - (float) (Math.abs(lightAngle) - 80) / 10.0f;
+            directionalLight.setIntensity(factor);
+
+            //TODO fix magic numbers
+            directionalLight.setColor(new Vector3f(directionalLight.getColor().getX(),
+                    Math.max(factor, 0.9f), Math.max(factor, 0.5f)));
+
+
+        } else {
+            directionalLight.setIntensity(1);
+            directionalLight.setColor(LIGHT_COLOR_WHITE);
+        }
+        double angRad = Math.toRadians(lightAngle);
+        directionalLight.setDirection(new Vector3f((float) Math.sin(angRad), (float) Math.cos(angRad),
+                directionalLight.getDirection().getZ()));
+
         for (GameObject object : objects) {
             // Update position
             Vector3f itemPos = object.getPosition();

@@ -5,7 +5,9 @@ public class Vector3f {
     private float[] V = new float[LENGTH];
 
     public Vector3f() {
-    };
+    }
+
+    ;
 
     //TODO init V in construct
 
@@ -15,9 +17,20 @@ public class Vector3f {
 
     ;
 
+    public Vector3f(float x, float y, float z, float w) {
+        set(x, y, z);
+        setW(w);
+    }
+
     public float getMagnitude() {
         return (float) Math.sqrt(getX() + getY() + getZ());
     }
+
+    public float[] getAll() {
+        return V;
+    }
+
+    ;
 
     //adds vector and point
     public Point3D add(Point3D P) {
@@ -64,6 +77,10 @@ public class Vector3f {
         return V[2];
     }
 
+    public float getW() {
+        return V[3];
+    }
+
     public void setX(float x) {
         V[0] = x;
     }
@@ -74,6 +91,10 @@ public class Vector3f {
 
     public void setZ(float z) {
         V[2] = z;
+    }
+
+    public void setW(float w) {
+        V[3] = w;
     }
 
     public void set(float x, float y, float z) {

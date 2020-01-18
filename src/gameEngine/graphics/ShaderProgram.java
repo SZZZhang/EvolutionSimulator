@@ -3,12 +3,15 @@
 package gameEngine.graphics;
 
 import gameEngine.math.Matrix4f;
+import gameEngine.math.Vector3f;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
+
 import static org.lwjgl.opengl.GL20.*;
+
 import org.lwjgl.system.MemoryStack;
 
 public class ShaderProgram {
@@ -91,6 +94,26 @@ public class ShaderProgram {
             fb.put(value.getAll()).flip();
             glUniformMatrix4fv(uniforms.get(uniformName), false, fb);
         }
+    }
+
+    public void createDirectionalLightUniform(String uniformName) throws Exception {
+        createUniform(uniformName + ".colour");
+        createUniform(uniformName + ".direction");
+        createUniform(uniformName + ".intensity");
+    }
+
+    public void setUniform(String uniformName, Vector3f value) {
+        glUniform3f(uniforms.get(uniformName), value.getX(), value.getY(), value.getZ());
+    }
+
+    public void setUniform(String uniformName, DirectionalLight dirLight) {
+        setUniform(uniformName + ".colour", dirLight.getColor());
+        setUniform(uniformName + ".direction", dirLight.getDirection());
+        setUniform(uniformName + ".intensity", dirLight.getIntensity());
+    }
+
+    public void setUniform(String uniformName, float value) {
+        glUniform1f(uniforms.get(uniformName), value);
     }
 
     public void bind() {
