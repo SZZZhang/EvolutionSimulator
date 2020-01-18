@@ -1,62 +1,77 @@
 package gameEngine.graphics;
 
-import org.lwjgl.BufferUtils;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import org.lwjgl.system.MemoryStack;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL30.glGenerateMipmap;
+import static org.lwjgl.stb.STBImage.*;
 
 public class Texture {
-    private int id;
-    private int width;
-    private int height;
 
-    public Texture(String filename) {
-        BufferedImage bi;
-        try {
-            bi = ImageIO.read(new File(filename));
-            width = bi.getWidth();
-            height = bi.getHeight();
+    private final int id;
 
-            int[] pixels_raw = new int[width * height * 4];
-            pixels_raw = bi.getRGB(0, 0, width, height, null, 0, width);
-            System.out.println(pixels_raw.length);
+    private final int width;
 
-            ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
+    private final int height;
 
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
-                    if (i * width + j < pixels_raw.length) {
-                        int pixel = pixels_raw[i * width + j];
-                        pixels.put((byte) ((pixel >> 16) & 0xFF));        // RED
-                        pixels.put((byte) ((pixel >> 8) & 0xFF));        // GREEN
-                        pixels.put((byte) (pixel & 0xFF));                // BLUE
-                        pixels.put((byte) ((pixel >> 24) & 0xFF));        // ALPHA
-                    }
-                }
+    public Texture(String fileName) throws Exception {
+        ByteBuffer buf;
+        // Load Texture file
+        try (MemoryStack stack = MemoryStack.stackPush()) {
+            IntBuffer w = stack.mallocInt(1);
+            IntBuffer h = stack.mallocInt(1);
+            IntBuffer channels = stack.mallocInt(1);
+
+            buf = stbi_load(fileName, w, h, channels, 4);
+            if (buf == null) {
+                throw new Exception("Image file [" + fileName  + "] not loaded: " + stbi_failure_reason());
             }
-            pixels.flip();
-            id = glGenTextures();
-            glBindTexture(GL_TEXTURE_2D, id);
 
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-        } catch (IOException e) {
-            e.printStackTrace();
+            width = w.get();
+            height = h.get();
         }
+
+        // Create a new OpenGL texture
+        int textureId = glGenTextures();
+        // Bind the texture
+        glBindTexture(GL_TEXTURE_2D, textureId);
+
+        // Tell OpenGL how to unpack the RGBA bytes. Each component is 1 byte size
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        // Upload the texture data
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
+            GL_RGBA, GL_UNSIGNED_BYTE, buf);
+        // Generate Mip Map
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        stbi_image_free(buf);
+
+        this.id = textureId;
     }
 
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, id);
     }
 
-    public int getTextureID() {
+    public int getId() {
         return id;
     }
 
+    public void cleanup() {
+        glDeleteTextures(id);
+    }
 }
+

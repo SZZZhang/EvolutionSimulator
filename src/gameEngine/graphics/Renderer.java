@@ -34,6 +34,8 @@ public class Renderer {
         Matrix4f viewMatrix = Matrix4f.getViewMatrix(GameEngine.camera.getPosition(),
                 GameEngine.camera.getRotation());
 
+        shader.setUniform("texture_sampler", 0);
+
         //draw objects
         for (GameObject object : gameObjects) {
             Matrix4f modelViewMatrix = Matrix4f.getModelViewMatrix(object, viewMatrix);
@@ -58,6 +60,7 @@ public class Renderer {
             //create uniforms
             shader.createUniform("projectionMatrix");
             shader.createUniform("modelViewMatrix");
+            shader.createUniform("texture_sampler");
 
             window.setBackgroundColor(0.0f, 0.0f, 0.0f);
 

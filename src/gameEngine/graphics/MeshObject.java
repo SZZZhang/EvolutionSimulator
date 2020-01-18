@@ -116,6 +116,7 @@ public class MeshObject {
         }
     }
 
+    /*
     public MeshObject(String filename) {
         this();
         try {
@@ -171,7 +172,7 @@ public class MeshObject {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 }
