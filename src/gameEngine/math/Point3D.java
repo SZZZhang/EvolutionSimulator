@@ -13,13 +13,13 @@ public class Point3D {
         P[3] = 1;
     }
 
-    public Point3D add(Vector3D vector) {
+    public Point3D add(Vector3f vector) {
         return new Point3D(vector.getX() + this.getX(),
                 vector.getY() + this.getY(), vector.getZ() + this.getY());
     }
 
-    public Vector3D subtract(Point3D point) {
-        return new Vector3D(point.getX() - this.getX(),
+    public Vector3f subtract(Point3D point) {
+        return new Vector3f(point.getX() - this.getX(),
                 point.getY() - this.getY(), point.getZ() - this.getZ());
     }
 

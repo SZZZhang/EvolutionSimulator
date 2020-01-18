@@ -1,7 +1,7 @@
 package gameEngine.graphics;
 
 import gameEngine.math.Point3D;
-import gameEngine.math.Vector3D;
+import gameEngine.math.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.io.File;
@@ -21,7 +21,7 @@ public class MeshObject {
 
     private ArrayList<Point3D> vertex;
     private ArrayList<Float[]> texCoords;
-    private ArrayList<Vector3D> normals;
+    private ArrayList<Vector3f> normals;
 
     private ArrayList<Face> faces;        // indices into the vertices array list
 
@@ -109,7 +109,7 @@ public class MeshObject {
                 glTexCoord2f(tex[0], tex[1]);
                 Point3D p = vertex.get(faces.get(i).getVertexIndex(j) - 1);
                 glVertex3f(p.getX(), p.getY(), p.getZ());
-                Vector3D v = normals.get(faces.get(i).getNormalIndex(j) - 1);
+                Vector3f v = normals.get(faces.get(i).getNormalIndex(j) - 1);
                 glNormal3f(v.getX(), v.getY(), v.getZ());
             }
             glEnd();
@@ -134,7 +134,7 @@ public class MeshObject {
                     f[1] = Float.parseFloat(lineArray[2]);
                     texCoords.add(f);
                 } else if (lineArray[0].equals("vn")) {
-                    Vector3D vector = new Vector3D(Float.parseFloat(lineArray[1]),
+                    Vector3f vector = new Vector3f(Float.parseFloat(lineArray[1]),
                             Float.parseFloat(lineArray[2]),
                             Float.parseFloat(lineArray[3]));
                     normals.add(vector);

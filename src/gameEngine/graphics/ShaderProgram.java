@@ -2,10 +2,18 @@
 
 package gameEngine.graphics;
 
+import gameEngine.math.Matrix4f;
+import org.lwjgl.system.MemoryStack;
+
+import java.nio.FloatBuffer;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.lwjgl.opengl.GL20.*;
 
 public class ShaderProgram {
 
+    private final Map<String, Integer> uniforms;
     private final int programId;
 
     private int vertexShaderId;
@@ -17,6 +25,7 @@ public class ShaderProgram {
         if (programId == 0) {
             throw new Exception("Could not create Shader");
         }
+        uniforms = new HashMap<>();
     }
 
     public void createVertexShader(String shaderCode) throws Exception {
@@ -62,7 +71,25 @@ public class ShaderProgram {
         if (glGetProgrami(programId, GL_VALIDATE_STATUS) == 0) {
             System.err.println("Warning validating Shader code: " + glGetProgramInfoLog(programId, 1024));
         }
+    }
 
+    public void createUniform(String uniformName) throws Exception {
+        int uniformLocation = glGetUniformLocation(programId,
+                uniformName);
+        if (uniformLocation < 0) {
+            throw new Exception("Could not find uniform:" +
+                    uniformName);
+        }
+        uniforms.put(uniformName, uniformLocation);
+    }
+
+    public void setUniform(String uniformName, Matrix4f value) {
+        // Dump the matrix into a float buffer
+        try (MemoryStack stack = MemoryStack.stackPush()) {
+            FloatBuffer fb = stack.mallocFloat(Matrix4f.SIZE * Matrix4f.SIZE);
+            fb.put(value.getAll()).flip();
+            glUniformMatrix4fv(uniforms.get(uniformName), false, fb);
+        }
     }
 
     public void bind() {

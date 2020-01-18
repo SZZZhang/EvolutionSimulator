@@ -1,15 +1,15 @@
 package gameEngine.math;
 
-public class Vector3D {
+public class Vector3f {
     private int LENGTH = 4;
     private float[] V = new float[LENGTH];
 
-    public Vector3D() {
-    }
+    public Vector3f() {
+    };
 
-    ;
+    //TODO init V in construct
 
-    public Vector3D(float x, float y, float z) {
+    public Vector3f(float x, float y, float z) {
         set(x, y, z);
     }
 
@@ -26,26 +26,26 @@ public class Vector3D {
     }
 
     //adds vector and vector
-    public Vector3D add(Vector3D V) {
-        return new Vector3D(this.getX() + V.getX(), this.getY() +
+    public Vector3f add(Vector3f V) {
+        return new Vector3f(this.getX() + V.getX(), this.getY() +
                 V.getY(), this.getZ() + V.getZ());
     }
 
     //scales vector by a scale factor
-    public Vector3D scale(int scaleFactor) {
-        return new Vector3D(scaleFactor * this.getX(), scaleFactor * this.getY(),
+    public Vector3f scale(int scaleFactor) {
+        return new Vector3f(scaleFactor * this.getX(), scaleFactor * this.getY(),
                 scaleFactor * this.getZ());
 
     }
 
     //returns the dot product of two vectors
-    public float dotProduct(Vector3D V2) {
+    public float dotProduct(Vector3f V2) {
         return this.getX() * V2.getX() + this.getY() * V2.getY() + this.getZ() + V2.getZ();
     }
 
     //returns the normal of the vector
-    public Vector3D normal() {
-        return new Vector3D(
+    public Vector3f normal() {
+        return new Vector3f(
                 this.getX() / this.getMagnitude(), this.getY() / this.getMagnitude(),
                 this.getZ() / this.getMagnitude()
         );

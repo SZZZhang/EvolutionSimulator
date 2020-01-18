@@ -1,9 +1,8 @@
 package gameEngine;
 
 import gameEngine.graphics.MeshObject;
-import gameEngine.math.Matrix3D;
-import gameEngine.math.Vector3D;
-import org.lwjgl.BufferUtils;
+import gameEngine.math.Matrix4f;
+import gameEngine.math.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -11,12 +10,9 @@ import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
-import java.nio.FloatBuffer;
-
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.GLFW_TRUE;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11C.glClear;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -28,19 +24,19 @@ public class Window {
     private int frames;
     private static long time;
     private Input input;
-    private Vector3D bgColor = new Vector3D(0, 0, 0);
+    private Vector3f bgColor = new Vector3f(0, 0, 0);
     private GLFWWindowSizeCallback sizeCallback;
     private boolean isResized;
     private boolean isFullscreen;
     private int windowPosX, windowPosY;
-    private Matrix3D projection = new Matrix3D();
+    private Matrix4f projection = new Matrix4f();
     private MeshObject cottage;
 
     public Window(int width, int height, String title) {
         this.width = width;
         this.height = height;
         this.title = title;
-        projection = projection.projection(70.0f, (float) width / (float) height, 0.1f, 1000.0f);
+        //projection = projection.projection(70.0f, (float) width / (float) height, 0.1f, 1000.0f);
     }
 
     public void create() {
@@ -55,8 +51,9 @@ public class Window {
 
         // Configure
         //Sets OpenGL Context to version 3.2 since it is not by default on Mac
+
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
@@ -79,6 +76,7 @@ public class Window {
                 (vidmode.height() - height) / 2
         );
 
+        glEnable(GL_DEPTH_TEST);
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);
         // Enable v-sync
@@ -139,6 +137,10 @@ public class Window {
 
     public int getWidth() {
         return width;
+    }
+
+    public boolean isResized() {
+        return isResized;
     }
 
     public int getHeight() {
