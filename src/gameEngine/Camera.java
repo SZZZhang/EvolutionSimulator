@@ -9,6 +9,7 @@ public class Camera {
     private float dist;  //distance between camera and object
     public float VAngle, HAngle; //vertical and horizontal angles between camera and target object
     private double prevMouseX = 0, prevMouseY = 0, mouseX = 0, mouseY = 0;
+    private boolean isHoldingButtonDown[] = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];
 
     public Camera(Vector3f position, Vector3f rotation) {
         this.position = position;
@@ -21,22 +22,39 @@ public class Camera {
     }
 
     public void update() {
-        mouseX = Input.getMouseX();
-        mouseY = Input.getMouseY();
 
-        float distX = (float) (mouseX - prevMouseX);
-        float distY = (float) (mouseY - prevMouseY);
+        if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT) &&
+                isHoldingButtonDown[GLFW.GLFW_MOUSE_BUTTON_LEFT]) {
 
-        rotation = rotation.add(new Vector3f(-distY * MOUSE_SENSITIVITY,
-                -distX * MOUSE_SENSITIVITY, 0));
+            mouseX = Input.getMouseX();
+            mouseY = Input.getMouseY();
 
-        prevMouseX = mouseX;
-        prevMouseY = mouseY;
+            float distX = (float) (mouseX - prevMouseX);
+            float distY = (float) (mouseY - prevMouseY);
 
-        System.out.println("Mouse motion was updated");
+            rotation = rotation.add(new Vector3f(-distY * MOUSE_SENSITIVITY,
+                    -distX * MOUSE_SENSITIVITY, 0));
+
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+
+            System.out.println("Mouse motion was updated");
+        } else if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) {
+            isHoldingButtonDown[GLFW.GLFW_MOUSE_BUTTON_LEFT] = true;
+            prevMouseX = Input.getMouseX();
+            prevMouseY = Input.getMouseY();
+        } else {
+            isHoldingButtonDown[GLFW.GLFW_MOUSE_BUTTON_LEFT] = false;
+        }
+
+
+        if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_RIGHT)) {
+            position.setZ(position.getZ() + 0.01f);
+            System.out.println("zoomed out");
+        }
     }
 
-    public void update(GameObject object) {
+   /* public void update() {
 
         mouseX = Input.getMouseX();
         mouseY = Input.getMouseY();
@@ -62,11 +80,11 @@ public class Camera {
         float xOffset = (float) (HDist * Math.sin(Math.toRadians(-rotation.getY())));
         float zOffset = (float) (HDist * Math.sin(Math.toRadians(-rotation.getY())));
 
-        position.set(object.getPosition().getX() + xOffset,
-                object.getPosition().getY() - VDist, object.getPosition().getZ() + zOffset);
+        //position.set(object.getPosition().getX() + xOffset,
+              //  object.getPosition().getY() - VDist, object.getPosition().getZ() + zOffset);
 
     }
-
+*/
     //TODO magic numbers
 
     public void movePosition(float offsetX, float offsetY, float offsetZ) {

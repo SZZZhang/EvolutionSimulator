@@ -12,6 +12,8 @@ public class Input {
     private GLFWScrollCallback mouseScroll;
 
     public Input() {
+
+
         mouseMove = new GLFWCursorPosCallback() {
             public void invoke(long window, double xpos, double ypos) {
                 mouseX = xpos;
