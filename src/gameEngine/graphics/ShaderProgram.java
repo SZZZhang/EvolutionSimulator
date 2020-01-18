@@ -3,6 +3,7 @@
 package gameEngine.graphics;
 
 import gameEngine.math.Matrix4f;
+import gameEngine.math.Vector3f;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.FloatBuffer;
@@ -99,7 +100,10 @@ public class ShaderProgram {
             System.out.println(e);
         }
 
-}
+}    public void setUniform(String uniformName, Vector3f value) {
+        glUniform3f(uniforms.get(uniformName), value.getX(), value.getY(), value.getZ());
+    }
+
 
     public void bind() {
         glUseProgram(programId);

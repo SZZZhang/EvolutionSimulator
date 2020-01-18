@@ -138,11 +138,19 @@ public class GameEngine implements Runnable {
         Texture texture;
         try {
             texture = new Texture("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/grassblock.png"); //TODO add better error handling for loading in textures
+            //Texture t2 = new Texture("")
 
-            GameObject square = new GameObject(new Mesh(positions, textCoords, indices, texture));
+            Mesh mesh = OBJLoader.loadMesh("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/cottage_obj.obj");
+            //mesh.setTexture(texture);System.out.println("success");
+            GameObject house = new GameObject(mesh);
+            //house.setPosition(new Vector3f(0,0,-2));
+            //house.setScale(new Vector3f(0.01f, 0.01f, 0.01f));
+            objects.add(house);
+            //
+            // GameObject square = new GameObject(new Mesh(positions, textCoords, indices, texture));
         //square.setPosition(new Vector3f(0, 0, 0f));//TODO change
-        square.setScale(new Vector3f(.2f, .2f, .2f));
-        objects.add(square);
+       // square.setScale(new Vector3f(.2f, .2f, .2f));
+        //objects.add(square);
         } catch (Exception e) {
             System.out.println("failed to load texture: " + e);
         }

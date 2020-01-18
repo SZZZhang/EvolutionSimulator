@@ -41,6 +41,10 @@ public class Renderer {
             Matrix4f modelViewMatrix = Matrix4f.getModelViewMatrix(object, viewMatrix);
             shader.setUniform("modelViewMatrix", modelViewMatrix);
 
+              // Render the mesh for this game item
+    shader.setUniform("colour", object.getMesh().getColour());
+    shader.setUniform("useColour", object.getMesh().isTextured() ? 0 : 1);
+
             object.getMesh().render();
         }
 
@@ -61,6 +65,9 @@ public class Renderer {
             shader.createUniform("projectionMatrix");
             shader.createUniform("modelViewMatrix");
             shader.createUniform("texture_sampler");
+            // Create uniform for default colour and the flag that controls it
+        shader.createUniform("colour");
+        shader.createUniform("useColour");
 
             window.setBackgroundColor(0.0f, 0.0f, 0.0f);
 
