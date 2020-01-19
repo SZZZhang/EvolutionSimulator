@@ -28,7 +28,7 @@ public class Camera {
         }
         if(Input.isKeyDown(GLFW.GLFW_KEY_DOWN)) {
             position = position.add(new Vector3f(0, 0,MOUSE_MOVE_FACTOR));
-            System.out.println(position.getZ());
+            System.out.println(position.getX() + " " + position.getY() + " " + position.getZ());
         }
         if(Input.isKeyDown(GLFW.GLFW_KEY_A)) {
             position = position.add(new Vector3f(-MOUSE_MOVE_FACTOR, 0,0));

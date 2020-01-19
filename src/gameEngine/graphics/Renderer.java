@@ -16,15 +16,15 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Renderer {
     private ShaderProgram shader;
-    private static final float FOV = (float) Math.toRadians(70.0f);
-    private static final float Z_NEAR = 0.1f;
+    private static final float FOV = (float)70.0f;
+    private static final float Z_NEAR = 0.01f;
     private static final float Z_FAR = 1000.f;
 
 
     private float specularPower = 10f;
 
     public void render(Window window, ArrayList<GameObject> gameObjects,
-                       Vector3f ambientLight, PointLight pointLight) {
+                       Vector3f ambientLight, PointLight pointLight, DirectionalLight directionalLight) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         shader.bind();
@@ -47,13 +47,18 @@ public class Renderer {
         Vector3f aux = new Vector3f(lightPos.getX(), lightPos.getY(), lightPos.getZ(), 1);
         aux = Matrix4f.multiply(aux, viewMatrix);
 
-
         lightPos.setX(aux.getX());
         lightPos.setY(aux.getY());
         lightPos.setZ(aux.getZ());
 
         shader.setUniform("pointLight", currPointLight);
 
+          // Get a copy of the directional light object and transform its position to view coordinates
+        DirectionalLight currDirLight = new DirectionalLight(directionalLight);
+        Vector3f dir = new Vector3f(currDirLight.getDirection());
+        dir = Matrix4f.multiply(dir, viewMatrix);
+        currDirLight.setDirection(new Vector3f(dir.getX(), dir.getY(), dir.getZ()));
+        shader.setUniform("directionalLight", currDirLight);
 
         shader.setUniform("texture_sampler", 0);
 
@@ -64,7 +69,7 @@ public class Renderer {
 
             shader.setUniform("material", object.getMesh().getMaterial());
             // Render the mesh for this game item
-           // shader.setUniform("colour", object.getMesh().getColour());
+            // shader.setUniform("colour", object.getMesh().getColour());
             //shader.setUniform("useColour", object.getMesh().isTextured() ? 0 : 1);
 
             object.getMesh().render();
@@ -95,6 +100,7 @@ public class Renderer {
             shader.createUniform("specularPower");
             shader.createUniform("ambientLight");
             shader.createPointLightUniform("pointLight");
+            shader.createDirectionalLightUniform("directionalLight");
 
 
             window.setBackgroundColor(0.0f, 0.0f, 0.0f);

@@ -9,8 +9,11 @@ import org.lwjgl.system.MemoryStack;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
+
 import static org.lwjgl.opengl.GL20.*;
+
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 
 public class ShaderProgram {
 
@@ -55,13 +58,30 @@ public class ShaderProgram {
         createUniform(uniformName + ".reflectance");
     }
 
- public void setUniform(String uniformName, Matrix4f value) {
+    public void createDirectionalLightUniform(String uniformName) throws Exception {
+        createUniform(uniformName + ".colour");
+        createUniform(uniformName + ".direction");
+        createUniform(uniformName + ".intensity");
+    }
+
+    // ...
+    public void setUniform(String uniformName, DirectionalLight dirLight) {
+        setUniform(uniformName + ".colour", dirLight.getColor());
+        setUniform(uniformName + ".direction", dirLight.getDirection());
+        setUniform(uniformName + ".intensity", dirLight.getIntensity());
+    }
+
+    public void setUniform(String uniformName, Matrix4f value) {
         // Dump the matrix into a float buffer
-        try (MemoryStack stack = MemoryStack.stackPush()) {
-            FloatBuffer fb = stack.mallocFloat(Matrix4f.SIZE * Matrix4f.SIZE);
+
+        try(MemoryStack stack = MemoryStack.stackPush()){
+            FloatBuffer fb = MemoryUtil.memAllocFloat(Matrix4f.SIZE * Matrix4f.SIZE);
             fb.put(value.getAll()).flip();
             glUniformMatrix4fv(uniforms.get(uniformName), false, fb);
+            //glUniformMatrix4fv(uniforms.get(uniformName), false, stack.mallocFloat(16).put(value.getAll()));
+
         }
+
     }
 
     public void setUniform(String uniformName, int value) {
