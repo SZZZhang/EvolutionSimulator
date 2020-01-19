@@ -296,6 +296,21 @@ public class Matrix4f {
         return result;
     }
 
+     //multiplies matrix and vector
+    public static Vector3f multiply(Vector3f vector, Matrix4f matrix) {
+        Vector3f result = new Vector3f();
+
+        int x = 0, y = 0, z = 0, w = 0;
+        for (int i = 0; i < SIZE; i++) {
+            x += matrix.get(0, i) * vector.getAll()[i];
+            y += matrix.get(1, i) * vector.getAll()[i];
+            z += matrix.get(2, i) * vector.getAll()[i];
+            w += matrix.get(3, i) * vector.getAll()[i];
+        }
+        result.set(x, y, z);
+        return result;
+    }
+
     //TODO obviously copied code
     @Override
     public int hashCode() {

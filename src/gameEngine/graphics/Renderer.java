@@ -5,6 +5,7 @@ import gameEngine.GameEngine;
 import gameEngine.GameObject;
 import gameEngine.Window;
 import gameEngine.math.Matrix4f;
+import gameEngine.math.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
@@ -20,7 +21,10 @@ public class Renderer {
     private static final float Z_FAR = 1000.f;
 
 
-    public void render(Window window, ArrayList<GameObject> gameObjects) {
+    private float specularPower = 10f;
+
+    public void render(Window window, ArrayList<GameObject> gameObjects,
+                       Vector3f ambientLight, PointLight pointLight) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         shader.bind();
@@ -34,6 +38,23 @@ public class Renderer {
         Matrix4f viewMatrix = Matrix4f.getViewMatrix(GameEngine.camera.getPosition(),
                 GameEngine.camera.getRotation());
 
+        // Update Light Uniforms
+        shader.setUniform("ambientLight", ambientLight);
+        shader.setUniform("specularPower", specularPower);
+        // Get a copy of the light object and transform its position to view coordinates
+        PointLight currPointLight = new PointLight(pointLight);
+        Vector3f lightPos = currPointLight.getPosition();
+        Vector3f aux = new Vector3f(lightPos.getX(), lightPos.getY(), lightPos.getZ(), 1);
+        aux = Matrix4f.multiply(aux, viewMatrix);
+
+
+        lightPos.setX(aux.getX());
+        lightPos.setY(aux.getY());
+        lightPos.setZ(aux.getZ());
+
+        shader.setUniform("pointLight", currPointLight);
+
+
         shader.setUniform("texture_sampler", 0);
 
         //draw objects
@@ -41,9 +62,10 @@ public class Renderer {
             Matrix4f modelViewMatrix = Matrix4f.getModelViewMatrix(object, viewMatrix);
             shader.setUniform("modelViewMatrix", modelViewMatrix);
 
-              // Render the mesh for this game item
-    shader.setUniform("colour", object.getMesh().getColour());
-    shader.setUniform("useColour", object.getMesh().isTextured() ? 0 : 1);
+            shader.setUniform("material", object.getMesh().getMaterial());
+            // Render the mesh for this game item
+           // shader.setUniform("colour", object.getMesh().getColour());
+            //shader.setUniform("useColour", object.getMesh().isTextured() ? 0 : 1);
 
             object.getMesh().render();
         }
@@ -66,8 +88,14 @@ public class Renderer {
             shader.createUniform("modelViewMatrix");
             shader.createUniform("texture_sampler");
             // Create uniform for default colour and the flag that controls it
-        shader.createUniform("colour");
-        shader.createUniform("useColour");
+
+// Create uniform for material
+            shader.createMaterialUniform("material");
+            // Create lighting related uniforms
+            shader.createUniform("specularPower");
+            shader.createUniform("ambientLight");
+            shader.createPointLightUniform("pointLight");
+
 
             window.setBackgroundColor(0.0f, 0.0f, 0.0f);
 
@@ -85,7 +113,7 @@ public class Renderer {
         if (shader != null) {
             shader.cleanup();
         }
-        for(GameObject object: gameObjects) {
+        for (GameObject object : gameObjects) {
             object.getMesh().cleanUp();
         }
     }

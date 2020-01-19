@@ -75,7 +75,6 @@ public class Window {
                 (vidmode.width() - width) / 2,
                 (vidmode.height() - height) / 2
         );
-
         glEnable(GL_DEPTH_TEST);
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);

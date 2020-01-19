@@ -7,7 +7,9 @@ public class Vector3f {
     public Vector3f() {
     }
 
-    ;
+    public Vector3f(Vector3f vector) {
+        this(vector.getX(), vector.getY(), vector.getZ());
+    }
 
     //TODO init V in construct
 
@@ -24,6 +26,9 @@ public class Vector3f {
         return (float) Math.sqrt(getX() + getY() + getZ());
     }
 
+    public float[] getAll() {
+        return V;
+    }
     //adds vector and point
     public Point3D add(Point3D P) {
         return new Point3D(this.getX() + P.getX(), this.getY()

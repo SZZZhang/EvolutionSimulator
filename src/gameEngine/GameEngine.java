@@ -1,9 +1,6 @@
 package gameEngine;
 
-import gameEngine.graphics.Lighting;
-import gameEngine.graphics.Mesh;
-import gameEngine.graphics.Renderer;
-import gameEngine.graphics.Texture;
+import gameEngine.graphics.*;
 import gameEngine.math.Vector3f;
 import org.lwjgl.Version;
 
@@ -23,6 +20,9 @@ public class GameEngine implements Runnable {
     public Input input;
     public Renderer renderer;
     ArrayList<GameObject> objects;
+     private Vector3f ambientLight;
+
+    private PointLight pointLight;
 
             float[] positions = new float[]{
             // V0
@@ -135,19 +135,32 @@ public class GameEngine implements Runnable {
         input = new Input();
 
         objects = new ArrayList<>();
+
+        //set up lighting
+        ambientLight = new Vector3f(0.3f, 0.3f, 0.3f);
+        Vector3f lightColour = new Vector3f(1, 0, 0);
+        Vector3f lightPosition = new Vector3f(0, 0, -20);
+        float lightIntensity = 4.0f;
+        pointLight = new PointLight(lightColour, lightPosition, lightIntensity);
+        PointLight.Attenuation att = new PointLight.Attenuation(0.0f, 0.0f, 1.0f);
+        pointLight.setAttenuation(att);
+
         Texture texture;
         try {
+
             texture = new Texture("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/grassblock.png"); //TODO add better error handling for loading in textures
             //Texture t2 = new Texture("")
 
-            Mesh mesh = OBJLoader.loadMesh("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/cottage_obj.obj");
-            //mesh.setTexture(texture);System.out.println("success");
-            GameObject house = new GameObject(mesh);
+            Mesh mesh = OBJLoader.loadMesh("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/Cube.obj");
+            mesh.setMaterial(new Material(texture));
+            //GameObject house = new GameObject(mesh);
             //house.setPosition(new Vector3f(0,0,-2));
             //house.setScale(new Vector3f(0.01f, 0.01f, 0.01f));
-            objects.add(house);
+
             //
-            // GameObject square = new GameObject(new Mesh(positions, textCoords, indices, texture));
+             GameObject square = new GameObject(mesh);
+             objects.add(square);
+
         //square.setPosition(new Vector3f(0, 0, 0f));//TODO change
        // square.setScale(new Vector3f(.2f, .2f, .2f));
         //objects.add(square);
@@ -165,7 +178,7 @@ public class GameEngine implements Runnable {
             long loopStartTime = System.currentTimeMillis();
 
             camera.update();
-            renderer.render(window, objects);
+            renderer.render(window, objects, ambientLight, pointLight);
 
 
             window.update();
