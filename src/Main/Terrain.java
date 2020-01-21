@@ -14,6 +14,8 @@ public class Terrain {
     private String TERRAIN_BLOCK_PATH = "/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/Terrain.obj";
     private String TERRAIN_TEXTURE_PATH = "/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/Terrain.png";
 
+    public static float xBorderMin, xBorderMax, zBorderMin, zBorderMax;
+
     public Terrain(int width, int length) {
 
         try {
@@ -24,9 +26,13 @@ public class Terrain {
 
             terrainObject = new GameObject(mesh);
 
-            //terrainObject.setPosition(new Vector3f(0,10,0));
-
             Game.gameObjects.add(terrainObject);
+
+            xBorderMin = -Game.TERRAIN_WIDTH/2f;
+            xBorderMax = Game.TERRAIN_WIDTH/2f;
+            zBorderMin = -Game.TERRAIN_LENGTH/2f;
+            zBorderMax = Game.TERRAIN_LENGTH/2f;
+
         } catch (Exception e) {
             System.out.println("failed to initialize terrain" + e);
         }

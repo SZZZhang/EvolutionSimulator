@@ -35,7 +35,7 @@ public class GameEngine implements Runnable {
     ArrayList<GameObject> objects;
     private Vector3f ambientLight;
     private DirectionalLight directionalLight;
-    private float lightAngle = -90;
+    private float lightAngle = 0;
 
 
     private PointLight pointLight;
@@ -49,7 +49,9 @@ public class GameEngine implements Runnable {
         try {
             init();
             update();
-        } finally {
+        } catch (Exception e) {
+           System.out.println("Error: " + e);
+        }  finally{
             cleanup();
         }
 
@@ -59,14 +61,14 @@ public class GameEngine implements Runnable {
 
         Window.WindowOptions windowOptions = new Window.WindowOptions(true, true, true, true, true);
 
-        window = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, "DNA", windowOptions);
+        window = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, "Evolution simulator", windowOptions);
         window.create();
 
         hud = new HUD();
         hud.init(window);
         renderer = new Renderer();
         renderer.init(window);
-        camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
+        camera = new Camera(new Vector3f(0, Game.CREATURE_Y_POS + 1, 1), new Vector3f(0, 0, 0));
         input = new Input();
 
         //objects = new ArrayList<>();
@@ -74,13 +76,13 @@ public class GameEngine implements Runnable {
         //set up lighting
         ambientLight = new Vector3f(.5f, .5f, .5f);
         Vector3f lightColour = new Vector3f(1, 0, 0);
-        Vector3f lightPosition = new Vector3f(0, 0, -20);
-        float lightIntensity = 4.0f;
+        Vector3f lightPosition = new Vector3f(0, 0, 0);
+        float lightIntensity = .5f;
         pointLight = new PointLight(lightColour, lightPosition, lightIntensity);
         PointLight.Attenuation att = new PointLight.Attenuation(0.0f, 0.0f, 1.0f);
         pointLight.setAttenuation(att);
 
-        lightPosition = new Vector3f(-1, 0, 0);
+        lightPosition = new Vector3f(0, 1, 0);
         directionalLight = new DirectionalLight(LIGHT_COLOR_WHITE, lightPosition, lightIntensity);
 
         //TODO make parameters CONSTANTS
@@ -138,28 +140,6 @@ public class GameEngine implements Runnable {
 
     private void gameUpdate() {
         // Update directional light direction, intensity and colour
-        lightAngle += 1.1f;
-        if (lightAngle > 90) {
-            directionalLight.setIntensity(0);
-            if (lightAngle >= 360) {
-                lightAngle = -90; //TODO add scene light class
-            }
-        } else if (lightAngle <= -80 || lightAngle >= 80) {
-            float factor = 1 - (float) (Math.abs(lightAngle) - 80) / 10.0f;
-            directionalLight.setIntensity(factor);
-
-            //TODO fix magic numbers
-            directionalLight.setColor(new Vector3f(directionalLight.getColor().getX(),
-                    Math.max(factor, 0.9f), Math.max(factor, 0.5f)));
-
-
-        } else {
-            directionalLight.setIntensity(1);
-            directionalLight.setColor(LIGHT_COLOR_WHITE);
-        }
-        double angRad = Math.toRadians(lightAngle);
-        directionalLight.setDirection(new Vector3f((float) Math.sin(angRad), (float) Math.cos(angRad),
-                directionalLight.getDirection().getZ()));
 
     }
 

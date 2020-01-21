@@ -1,13 +1,15 @@
 package Main.Creatures;
 
 import Main.Game;
+import Main.Terrain;
 import gameEngine.GameEngine;
 import gameEngine.graphics.Mesh;
 import gameEngine.math.Vector3f;
 
 public abstract class Animal implements Creature {
 
-    private float EATING_RADIUS = 1;
+    //distance that the creature must be within to be considered to be approximately in its target position
+    private float CLOSE_RADIUS = 4;
 
 
     private float speed; //
@@ -22,11 +24,12 @@ public abstract class Animal implements Creature {
     private Vector3f targetPosition;
     private float angleOfTarget;
     private Creature targetCreature;
+
     private Mesh mesh;
     private boolean isDead = false;
 
     public Animal(float speed, float sensoryRadius, float maxHungerBar, float size, Mesh mesh,
-                   float nutritionalValue) {
+                  float nutritionalValue) {
         this.speed = speed;
         this.size = size;
         this.sensoryRadius = sensoryRadius;
@@ -39,25 +42,33 @@ public abstract class Animal implements Creature {
     @Override
     public void update() {
 
-//you don't always have a target creature;
-        if(targetCreature != null && targetCreature.getGameObject().getPosition().subtract(this.getGameObject().getPosition()).getMagnitude() <= 1) {
-            eat(targetCreature);
-            findTarget();
+        if (targetPosition != null && targetPosition.subtract(this.getGameObject().getPosition()).getMagnitude() <= CLOSE_RADIUS) {
+            if (targetCreature != null && targetCreature.getGameObject().getPosition().subtract(this.getGameObject().getPosition()).getMagnitude() <= 1) {
+                eat(targetCreature);
+            }
+            clearTarget();
         }
 
         move();
+
+        float currentX = this.getGameObject().getPosition().getX();
+        float currentZ = this.getGameObject().getPosition().getZ();
+        if(!inBound(currentX, currentZ)) {
+            clearTarget();
+            findTarget();
+        }
         //currentHungerBar -= size * speed; //makes creature more hungry
-        if(currentHungerBar <= 0) this.setDeath(true);
+        if (currentHungerBar <= 0) this.setDeath(true);
     }
 
     public void move() {
         if (!hasTarget) findTarget();
-        if (targetPosition.equals(this.getGameObject().getPosition())) hasTarget = false;
 
         //TODO first rotate, then move
+        //this.getGameObject().setRotation(new Vector3f(0, (float) Math.toDegrees(angleOfTarget), 0));
 
         //translation
-        float deltaX = (float) (Math.cos(angleOfTarget) * speed * GameEngine.gameTimeIncreasePerSec);
+        float deltaX = (float) (Math.sin(angleOfTarget) * speed * GameEngine.gameTimeIncreasePerSec);
         float deltaZ = (float) (Math.cos(angleOfTarget) * speed * GameEngine.gameTimeIncreasePerSec);
 
         this.getGameObject().setPosition(new Vector3f(
@@ -70,43 +81,71 @@ public abstract class Animal implements Creature {
     }
 
     private void findTarget() {
-        float targetDistance = sensoryRadius + 1;
+        findCreatureTarget();
+
+        if(!hasTarget) {
+            findRandomTarget();
+        }
+    }
+
+    private void clearTarget() {
+        hasTarget = false;
+        hasTargetCreature = false;
+        targetCreature = null;
+        targetPosition = null;
+        angleOfTarget = 0;
+    }
+
+    private void findCreatureTarget() {
+        float curTargetDistance = sensoryRadius + 1;
         Vector3f currentPosition = this.getGameObject().getPosition();
-        targetPosition = new Vector3f();
 
-        for (Creature creature : Game.creatures) {
-            if (creature.equals(this)) continue;
-            if (isFood(creature)) {
-
-                Vector3f subtracted = creature.getGameObject().getPosition();
-                Vector3f vec = currentPosition
-                        .subtract(subtracted);
-                float distance = vec.getMagnitude();
-
-                if (distance <= sensoryRadius && distance < targetDistance) {
+        for(Creature creature: Game.creatures) {
+            if(creature.equals(this)) continue;
+            if(isFood(creature)) {
+                float distance = currentPosition.subtract(creature.getGameObject().getPosition()).getMagnitude();
+                if(distance <= sensoryRadius && distance < curTargetDistance) {
                     targetPosition = creature.getGameObject().getPosition();
-                    hasTarget = true;
                     targetCreature = creature;
+                    hasTarget = true;
+                    hasTargetCreature = true;
+                    angleOfTarget = (float) Math.atan((currentPosition.getX() - targetPosition.getX())/
+                            (currentPosition.getZ() - targetPosition.getZ()));
                 }
             }
         }
+    }
 
-        if (!hasTarget) {
-            float randomX = (float) Math.random() * sensoryRadius;
-            float randomZ = (float) Math.sqrt(Math.pow(sensoryRadius, 2) - Math.pow(randomX, 2));
-            targetPosition = new Vector3f(randomX, Game.CREATURE_Y_POS,
-                    randomZ);
+    private void findRandomTarget() {
+        Vector3f currentPosition = this.getGameObject().getPosition();
+        angleOfTarget = (float) (Math.random() * 2f * Math.PI);
+        float targetX = (float) Math.sin(angleOfTarget) * sensoryRadius + currentPosition.getX();
+        float targetZ = (float) Math.cos(angleOfTarget) * sensoryRadius + currentPosition.getZ();
+
+        //generates new random target position if target position is beyond the bounds of the terrain
+        while (!(targetX >= Terrain.xBorderMin && targetX <= Terrain.xBorderMax &&
+                targetZ >= Terrain.zBorderMin && targetZ <= Terrain.zBorderMax)) {
+            angleOfTarget = (float) (Math.random() * 2f * Math.PI);
+            targetX = (float) Math.sin(angleOfTarget) * sensoryRadius + currentPosition.getX();
+            targetZ = (float) Math.cos(angleOfTarget) * sensoryRadius + currentPosition.getZ();
         }
 
-        angleOfTarget = (float) Math.acos(currentPosition.dotProduct(targetPosition) /(
-                currentPosition.getMagnitude() * targetPosition.getMagnitude()));
+        targetPosition = new Vector3f(targetX, Game.CREATURE_Y_POS, targetZ);
+        hasTarget = true;
+        hasTargetCreature = false;
+    }
 
+    //checks if creature is in the bounds of the terrain
+    private boolean inBound(float currentX, float currentZ){
+        return currentX >= Terrain.xBorderMin && currentX <= Terrain.xBorderMax &&
+                currentZ >= Terrain.zBorderMin && currentZ <= Terrain.zBorderMax;
     }
 
     @Override
     public boolean isPlant() {
         return false;
     }
+
     @Override
     public void setDeath(boolean deathValue) {
         isDead = deathValue;

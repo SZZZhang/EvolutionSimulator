@@ -8,6 +8,7 @@ Plant creatures have no movement. They generate randomly on
 package Main.Creatures;
 
 import Main.Game;
+import Main.Terrain;
 import gameEngine.GameObject;
 import gameEngine.graphics.Mesh;
 import gameEngine.math.Vector3f;
@@ -18,7 +19,7 @@ public abstract class Plant implements Creature {
     private Mesh mesh;
     private boolean isDead = false;
 
-    public Plant( float nutValue, Mesh m) {
+    public Plant(float nutValue, Mesh m) {
         this.nutritionalValue = nutValue;
         this.mesh = m;
         Game.plantNumber++;
@@ -36,7 +37,8 @@ public abstract class Plant implements Creature {
 
         }
 
-        Vector3f randomPosition = new Vector3f(randomX, Game.CREATURE_Y_POS, randomZ);
+        Vector3f randomPosition = new Vector3f(randomX + Terrain.xBorderMin,
+                Game.CREATURE_Y_POS, randomZ + Terrain.zBorderMin);
         System.out.println(randomPosition.getX() + " " + randomPosition.getY() + " " + randomPosition.getZ());
 
 

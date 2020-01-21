@@ -23,7 +23,7 @@ public class Window {
     private int frames;
     private static long time;
     private Input input;
-    private Vector3f bgColor = new Vector3f(0, 0, 0);
+    private Vector3f bgColor = new Vector3f(0.69f, .95f, 0.9f);
     private GLFWWindowSizeCallback sizeCallback;
     private boolean isResized;
     private boolean isFullscreen;

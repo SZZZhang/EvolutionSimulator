@@ -15,10 +15,9 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Renderer {
     private ShaderProgram shader;
-    private static final float FOV = (float) 70.0f;
+    private static final float FOV =  70.0f;
     private static final float Z_NEAR = 0.01f;
     private static final float Z_FAR = 1000.f;
-
 
     private float specularPower = 10f;
 

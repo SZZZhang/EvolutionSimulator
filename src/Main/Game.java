@@ -60,27 +60,20 @@ public class Game {
         cubeMesh.setMaterial(new Material(cubeTexture));
 
         Pyramid pyramid = new Pyramid();
-        Cube cube = new Cube(0.1f, 100  , 1, 30f);
+        Cube cube = new Cube(0.1f, 25  , 1, 30f);
         //pyramid.getGameObject().setPosition(new Vector3f(0,2,0));
     }
 
     public static void update() {
 
-        /*System.out.println(terrain.getTerrainObject().getPosition().getX() + " " +
-        terrain.getTerrainObject().getPosition().getY() + " " +
-     terrain.getTerrainObject().getPosition().getZ());*/
-
-        /*System.out.println(gameObjects.get(1).getPosition().getX() + " " + gameObjects.get(1).getPosition().getY() + " " +
-                gameObjects.get(1).getPosition().getZ());*/
-
-        //System.out.println(GameEngine.gameTime);
 
         updatePlants();
         for (Creature creature : creatures) {
-            creature.update();
             if (creature.isDead()) {
                 death(creature);
             }
+            creature.update();
+
         }
     }
 
