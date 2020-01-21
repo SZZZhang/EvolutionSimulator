@@ -1,6 +1,7 @@
 package gameEngine;
 
 import Main.Game;
+import Main.HUD;
 import gameEngine.graphics.*;
 import gameEngine.math.Vector3f;
 import org.lwjgl.Version;
