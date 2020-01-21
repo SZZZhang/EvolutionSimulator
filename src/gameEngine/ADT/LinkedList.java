@@ -1,9 +1,9 @@
 package gameEngine.ADT;
 
-public class LinkedList implements LinkedListInterface {
+public class LinkedList<T> implements LinkedListInterface {
 
-    private MyNode head = new MyNode();
-    private MyNode tail = new MyNode();
+    private MyNode<T> head = new MyNode<T>();
+    private MyNode<T> tail = new MyNode();
     private int size = 0;
 
     public LinkedList() {
@@ -13,6 +13,14 @@ public class LinkedList implements LinkedListInterface {
 
     @Override
     public void addNode(Node n) {
+        tail.getPrev().setNext(n);
+        n.setPrev(tail.getPrev());
+        tail.setPrev(n);
+        n.setNext(tail);
+        size++;
+    }
+    public void add(T t) {
+        Node n = new MyNode(t);
         tail.getPrev().setNext(n);
         n.setPrev(tail.getPrev());
         tail.setPrev(n);

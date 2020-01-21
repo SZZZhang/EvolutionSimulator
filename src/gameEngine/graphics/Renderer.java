@@ -1,5 +1,6 @@
 package gameEngine.graphics;
 
+import Main.Game;
 import gameEngine.FileUtil;
 import gameEngine.GameEngine;
 import gameEngine.GameObject;
@@ -16,7 +17,7 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Renderer {
     private ShaderProgram shader;
-    private static final float FOV = (float)70.0f;
+    private static final float FOV = (float) 70.0f;
     private static final float Z_NEAR = 0.01f;
     private static final float Z_FAR = 1000.f;
 
@@ -53,7 +54,7 @@ public class Renderer {
 
         shader.setUniform("pointLight", currPointLight);
 
-          // Get a copy of the directional light object and transform its position to view coordinates
+        // Get a copy of the directional light object and transform its position to view coordinates
         DirectionalLight currDirLight = new DirectionalLight(directionalLight);
         Vector3f dir = new Vector3f(currDirLight.getDirection());
         dir = Matrix4f.multiply(dir, viewMatrix);
@@ -71,6 +72,7 @@ public class Renderer {
             // Render the mesh for this game item
             // shader.setUniform("colour", object.getMesh().getColour());
             //shader.setUniform("useColour", object.getMesh().isTextured() ? 0 : 1);
+
 
             object.getMesh().render();
         }

@@ -8,14 +8,13 @@ import java.util.List;
 
 public class OBJLoader { //TODO source
 
-    public static Mesh loadMesh(String fileName) throws Exception {System.out.println("OBJ success");
+    public static Mesh loadMesh(String fileName) {
         List<String> lines = FileUtil.readAllLines(fileName);
 
         List<Vector3f> vertices = new ArrayList<>();
         List<Vector3f> textures = new ArrayList<>();
         List<Vector3f> normals = new ArrayList<>();
         List<Face> faces = new ArrayList<>();
-
 
 
         for (String line : lines) {
@@ -33,7 +32,8 @@ public class OBJLoader { //TODO source
                     // Texture coordinate
                     Vector3f vec2f = new Vector3f(
                             Float.parseFloat(tokens[1]),
-                            Float.parseFloat(tokens[2]) , 0);
+                            Float.parseFloat(tokens[2]),
+                            0);
                     textures.add(vec2f);
                     break;
                 case "vn":

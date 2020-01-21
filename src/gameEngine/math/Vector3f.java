@@ -23,12 +23,14 @@ public class Vector3f {
     }
 
     public float getMagnitude() {
-        return (float) Math.sqrt(getX() + getY() + getZ());
+        return (float) Math.sqrt(Math.pow(getX(), 2)
+                + Math.pow(getY(), 2) + Math.pow(getZ(), 2));
     }
 
     public float[] getAll() {
         return V;
     }
+
     //adds vector and point
     public Point3D add(Point3D P) {
         return new Point3D(this.getX() + P.getX(), this.getY()
@@ -39,6 +41,12 @@ public class Vector3f {
     public Vector3f add(Vector3f V) {
         return new Vector3f(this.getX() + V.getX(), this.getY() +
                 V.getY(), this.getZ() + V.getZ());
+    }
+
+    //vector subtraction
+    public Vector3f subtract(Vector3f V) {
+        return new Vector3f(this.getX() - V.getX(), this.getY() -
+                V.getY(), this.getZ() - V.getZ());
     }
 
     //scales vector by a scale factor

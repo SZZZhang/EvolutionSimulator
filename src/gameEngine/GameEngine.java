@@ -1,5 +1,6 @@
 package gameEngine;
 
+import Main.Game;
 import gameEngine.graphics.*;
 import gameEngine.math.Vector3f;
 import org.lwjgl.Version;
@@ -16,12 +17,19 @@ public class GameEngine implements Runnable {
     private Vector3f LIGHT_COLOR_WHITE = new Vector3f(1, 1, 1);
     private float LIGHT_INTENSITY = 0.1f;
 
+
     public int FPS = 1;
     public Window window;
     public Lighting lighting;
     public static Camera camera;
     public Input input;
     public Renderer renderer;
+
+    //Time
+    public static double gameTime = 0;
+    private static long prevNanoTime = 0;
+    public static double gameTimeIncreasePerSec = 1;
+
     ArrayList<GameObject> objects;
     private Vector3f ambientLight;
     private DirectionalLight directionalLight;
@@ -140,10 +148,10 @@ public class GameEngine implements Runnable {
         camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
         input = new Input();
 
-        objects = new ArrayList<>();
+        //objects = new ArrayList<>();
 
         //set up lighting
-        ambientLight = new Vector3f(.3f, .3f, .3f);
+        ambientLight = new Vector3f(.5f, .5f, .5f);
         Vector3f lightColour = new Vector3f(1, 0, 0);
         Vector3f lightPosition = new Vector3f(0, 0, -20);
         float lightIntensity = 4.0f;
@@ -153,46 +161,41 @@ public class GameEngine implements Runnable {
 
         lightPosition = new Vector3f(-1, 0, 0);
         directionalLight = new DirectionalLight(LIGHT_COLOR_WHITE, lightPosition, lightIntensity);
-//TODO make parameters CONSTANTS
-        Texture texture;
-        try {
 
-            texture = new Texture("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/texturecube.png"); //TODO add better error handling for loading in textures
-            //Texture t2 = new Texture("")
+        //TODO make parameters CONSTANTS
+        Game game = new Game();
+        objects = game.getObjects();
 
-            Mesh mesh = OBJLoader.loadMesh("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/assets/CuteCube.obj");
-            mesh.setMaterial(new Material(texture));
-            //GameObject house = new GameObject(mesh);
-            //house.setPosition(new Vector3f(0,0,-2));
-            //house.setScale(new Vector3f(0.01f, 0.01f, 0.01f));
+        //objects = new ArrayList<>();
+        //objects.add(game.getTerrain().getTerrainObject());
+        //objects = game.getObjects();
 
-            //
-            GameObject square = new GameObject(mesh);
-            objects.add(square);
-
-            //square.setPosition(new Vector3f(0, 0, 0f));//TODO change
-             //square.setScale(new Vector3f(.2f, .2f, .2f));
-            //objects.add(square);
-        } catch (Exception e) {
-            System.out.println("failed to load texture: " + e);
-        }
-
+        prevNanoTime = System.nanoTime();
 
     }
 
-    private void update() {
-        //TODO move this
+    //tracks time
+    public static void timeUpdate() {
+        long currentTime = System.nanoTime();
+        if (currentTime >= prevNanoTime + 1E9) {
+            gameTime += gameTimeIncreasePerSec;
+            prevNanoTime  = currentTime;
+        }
+    }
 
+    private void update() {
+        //TODO move thispackage Main;
         while (!glfwWindowShouldClose(window.getWindow())) {
             long loopStartTime = System.currentTimeMillis();
 
             gameUpdate();
+            timeUpdate();
             camera.update();
             renderer.render(window, objects, ambientLight, pointLight, directionalLight);
 
-
             window.update();
 
+            Game.update();
             sleep(loopStartTime); //makes the thread sleep until next update
         }
     }
@@ -236,30 +239,6 @@ public class GameEngine implements Runnable {
         directionalLight.setDirection(new Vector3f((float) Math.sin(angRad), (float) Math.cos(angRad),
                 directionalLight.getDirection().getZ()));
 
-
-        for (GameObject object : objects) {
-            // Update position
-            Vector3f itemPos = object.getPosition();
-            /*float posx = itemPos.getX() + displxInc * 0.01f;
-            float posy = itemPos.getY() + displyInc * 0.01f;
-            float posz = itemPos.getZ() + displzInc * 0.01f;*/
-            object.setPosition(new Vector3f(itemPos.getX(), itemPos.getY(), itemPos.getZ()));
-            /*
-            // Update scale
-            float scale = object.getScale();
-            scale += scaleInc * 0.05f;
-            if ( scale < 0 ) {
-                scale = 0;
-            }
-            object.setScale();
-
-            // Update rotation angle
-            float rotation = object.getRotation().getZ() + 1.5f;
-            if ( rotation > 360 ) {
-                rotation = 0;
-            }
-            object.setRotation(0, 0, rotation);  */
-        }
     }
 
     private void cleanup() {
