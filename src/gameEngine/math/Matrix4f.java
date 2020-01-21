@@ -5,156 +5,8 @@ import gameEngine.GameObject;
 import java.nio.FloatBuffer;
 import java.util.Arrays;
 
-/*public class Matrix4f {
 
-    public static int SIZE = 4;
-    private float[] M;
-
-
-    public Matrix4f() {
-        M = new float[SIZE * SIZE];
-    }
-
-    public Matrix4f(float[] matrix) {
-        M = matrix;
-    }
-
-    public float get(int x, int y) {
-        return M[y * SIZE + x];
-    }
-
-    public void set(int x, int y, float value) {
-        M[y * SIZE + x] = value;
-    }
-
-    public float[] getAll() {
-        return M;
-    }
-
-    public void setAll(float[] M2) {
-        M = M2;
-    }
-
-    public static Matrix4f identity() {
-        Matrix4f M2 = new Matrix4f();
-
-        for (int i = 0; i < SIZE; i++)
-            M2.set(i, i, 1);
-
-        return M2;
-    }
-
-    public Matrix4f translate(Vector3f translate) {
-        Matrix4f result = this.identity();
-
-        result.set(3, 0, translate.getX());
-        result.set(3, 1, translate.getY());
-        result.set(3, 2, translate.getZ());
-
-        return result;
-    }
-
-    public Matrix4f rotate(float angle, Vector3f axis) {
-        Matrix4f result = this.identity();
-
-        float cos = (float) Math.cos(Math.toRadians(angle));
-        float sin = (float) Math.sin(Math.toRadians(angle));
-        float C = 1 - cos;
-
-        result.set(0, 0, cos + axis.getX() * axis.getX() * C);
-        result.set(0, 1, axis.getX() * axis.getY() * C - axis.getZ() * sin);
-        result.set(0, 2, axis.getX() * axis.getZ() * C + axis.getY() * sin);
-        result.set(1, 0, axis.getY() * axis.getX() * C + axis.getZ() * sin);
-        result.set(1, 1, cos + axis.getY() * axis.getY() * C);
-        result.set(1, 2, axis.getY() * axis.getZ() * C - axis.getX() * sin);
-        result.set(2, 0, axis.getZ() * axis.getX() * C - axis.getY() * sin);
-        result.set(2, 1, axis.getZ() * axis.getY() * C + axis.getX() * sin);
-        result.set(2, 2, cos + axis.getZ() * axis.getZ() * C);
-
-        return result;
-    }
-
-    public Matrix4f scale(Vector3f scalar) {
-        Matrix4f result = this.identity();
-
-        result.set(0, 0, scalar.getX());
-        result.set(1, 1, scalar.getY());
-        result.set(2, 2, scalar.getZ());
-
-        return result;
-    }
-
-    public Matrix4f transform(Vector3f position, Vector3f rotation, Vector3f scale) {
-        Matrix4f result = this.identity();
-
-        Matrix4f translationMatrix = translate(position);
-        Matrix4f rotXMatrix = rotate(rotation.getX(), new Vector3f(1, 0, 0));
-        Matrix4f rotYMatrix = rotate(rotation.getY(), new Vector3f(0, 1, 0));
-        Matrix4f rotZMatrix = rotate(rotation.getZ(), new Vector3f(0, 0, 1));
-        Matrix4f scaleMatrix = scale(scale);
-
-        Matrix4f rotationMatrix = rotXMatrix.multiply(rotYMatrix.multiply(rotZMatrix));
-
-        result = translationMatrix.multiply(rotationMatrix.multiply(scaleMatrix));
-
-        return result;
-    }
-
-    public Matrix4f projection(float fov, float aspect, float near, float far) {
-        Matrix4f result = this.identity();
-
-        float tanFOV = (float) Math.tan(Math.toRadians(fov / 2));
-        float range = far - near;
-
-        result.set(0, 0, (1/tanFOV)/aspect);
-        result.set(1, 1, 1.0f / tanFOV);
-        result.set(2, 2, -((far + near) / range));
-        result.set(2, 3, -1.0f);
-        result.set(3, 2, -((2 * far * near) / range));
-        result.set(3, 3, 0.0f);
-        result.set(0, 0, 1.0f / (aspect * tanFOV));
-        result.set(1, 1, 1.0f / tanFOV);
-        result.set(2, 2, -((far + near) / range));
-        result.set(2, 3, -1.0f);
-        result.set(3, 2, -((2 * far * near) / range));
-        result.set(3, 3, 0.0f);
-
-        return result;
-    }
-
-    public Matrix4f view(Vector3f position, Vector3f rotation) {
-
-        Vector3f negative = new Vector3f(-position.getX(), -position.getY(), -position.getZ());
-        Matrix4f translationMatrix = translate(negative);
-        Matrix4f rotXMatrix = rotate(rotation.getX(), new Vector3f(1, 0, 0));
-        Matrix4f rotYMatrix = rotate(rotation.getY(), new Vector3f(0, 1, 0));
-        Matrix4f rotZMatrix = rotate(rotation.getZ(), new Vector3f(0, 0, 1));
-
-        Matrix4f rotationMatrix = rotZMatrix.multiply(rotYMatrix.multiply(rotXMatrix));
-
-        Matrix4f result = translationMatrix.multiply(rotationMatrix);
-
-        return result;
-    }
-
-    public Matrix4f multiply(Matrix4f other) {
-        Matrix4f result = this.identity();
-
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                result.set(i, j, this.get(i, 0) * other.get(0, j) +
-                        this.get(i, 1) * other.get(1, j) +
-                        this.get(i, 2) * other.get(2, j) +
-                        this.get(i, 3) * other.get(3, j));
-            }
-        }
-
-        return result;
-    }
-
-}*/
-
-//not my code
+//source: https://github.com/CodingAP/lwjgl3-tutorial/blob/master/tutorial15/src/engine/maths/Matrix4f.java
 public class Matrix4f {
     public static final int SIZE = 4;
     private float[] elements;
@@ -308,6 +160,7 @@ public class Matrix4f {
             w += matrix.get(3, i) * vector.getAll()[i];
         }
         result.set(x, y, z);
+        result.setW(w);
         return result;
     }
 

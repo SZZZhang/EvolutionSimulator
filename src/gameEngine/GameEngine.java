@@ -18,7 +18,6 @@ public class GameEngine implements Runnable {
     private Vector3f LIGHT_COLOR_WHITE = new Vector3f(1, 1, 1);
     private float LIGHT_INTENSITY = 0.1f;
 
-
     public int FPS = 1;
     public Window window;
     public Lighting lighting;
@@ -42,10 +41,6 @@ public class GameEngine implements Runnable {
 
     public void run() {
 
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
-        //game = new Thread(this, "game");
-        //game.start();
-
         try {
             init();
             update();
@@ -59,7 +54,8 @@ public class GameEngine implements Runnable {
 
     private void init() {
 
-        Window.WindowOptions windowOptions = new Window.WindowOptions(true, true, true, true, true);
+        Window.WindowOptions windowOptions = new Window.WindowOptions(true, true, true,
+                true, true);
 
         window = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, "Evolution simulator", windowOptions);
         window.create();

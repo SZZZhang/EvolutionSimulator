@@ -95,7 +95,7 @@ public class Vector3f {
     }
 
     public void setW(float w) {
-        V[3] = 2;
+        V[3] = w;
     }
 
     public void set(float x, float y, float z) {

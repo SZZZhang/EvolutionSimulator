@@ -103,7 +103,6 @@ public class Renderer {
             shader.createPointLightUniform("pointLight");
             shader.createDirectionalLightUniform("directionalLight");
 
-
             window.setBackgroundColor(0.0f, 0.0f, 0.0f);
 
         } catch (Exception e) {
@@ -114,7 +113,6 @@ public class Renderer {
             }
         }
     }
-
 
     public void cleanup(ArrayList<GameObject> gameObjects) {
         if (shader != null) {
