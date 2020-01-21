@@ -9,7 +9,7 @@ import java.util.List;
 public class OBJLoader { //TODO source
 
     public static Mesh loadMesh(String fileName) {
-        List<String> lines = FileUtil.readAllLines(fileName);
+        List<String> lines = Utils.readAllLines(fileName);
 
         List<Vector3f> vertices = new ArrayList<>();
         List<Vector3f> textures = new ArrayList<>();

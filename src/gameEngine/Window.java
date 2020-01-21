@@ -13,14 +13,13 @@ import org.lwjgl.opengl.GL11;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.GLFW_TRUE;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11C.glClear;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window {
 
     private int width, height;
     private String title;
-    private long window;
+    private long windowHandle;
     private int frames;
     private static long time;
     private Input input;
@@ -32,10 +31,13 @@ public class Window {
     private Matrix4f projection = new Matrix4f();
     private MeshObject cottage;
 
-    public Window(int width, int height, String title) {
+    private final WindowOptions opts;
+
+    public Window(int width, int height, String title, WindowOptions opts) {
         this.width = width;
         this.height = height;
         this.title = title;
+        this.opts = opts;
         //projection = projection.projection(70.0f, (float) width / (float) height, 0.1f, 1000.0f);
     }
 
@@ -57,37 +59,39 @@ public class Window {
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
+        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the windowHandle will stay hidden after creation
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the windowHandle will be resizable
 
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
-
-        window = GLFW.glfwCreateWindow(width, height, title, NULL, NULL);
+        windowHandle = GLFW.glfwCreateWindow(width, height, title, NULL, NULL);
         input = new Input();
 
-        glfwMakeContextCurrent(window);
+        glfwMakeContextCurrent(windowHandle);
         GL.createCapabilities();
 
         createCallbacks();
-        // Center the window
+        // Center the windowHandle
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         glfwSetWindowPos(
-                window,
+                windowHandle,
                 (vidmode.width() - width) / 2,
                 (vidmode.height() - height) / 2
         );
         glEnable(GL_DEPTH_TEST);
+        glEnable(GL_STENCIL_TEST);
         // Make the OpenGL context current
-        glfwMakeContextCurrent(window);
+        glfwMakeContextCurrent(windowHandle);
         // Enable v-sync
         glfwSwapInterval(1);
 
-        // Make the window visible
-        glfwShowWindow(window);
+        // Make the windowHandle visible
+        glfwShowWindow(windowHandle);
 
         //clears screen
         GL11.glClearColor(bgColor.getX(), bgColor.getY(), bgColor.getZ(), 1.0f);
 
-        glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        if (opts.antialiasing) {
+            glfwWindowHint(GLFW_SAMPLES, 4);
+        }
     }
 
     private void createCallbacks() {
@@ -99,31 +103,31 @@ public class Window {
             }
         };
 
-        GLFW.glfwSetCursorPosCallback(window, input.getMouseMoveCallback());
-        GLFW.glfwSetMouseButtonCallback(window, input.getMouseButtonsCallback());
-        GLFW.glfwSetScrollCallback(window, input.getMouseScrollCallback());
-        GLFW.glfwSetKeyCallback(window, input.getKeyboardCallback());
-        GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
+        GLFW.glfwSetCursorPosCallback(windowHandle, input.getMouseMoveCallback());
+        GLFW.glfwSetMouseButtonCallback(windowHandle, input.getMouseButtonsCallback());
+        GLFW.glfwSetScrollCallback(windowHandle, input.getMouseScrollCallback());
+        GLFW.glfwSetKeyCallback(windowHandle, input.getKeyboardCallback());
+        GLFW.glfwSetWindowSizeCallback(windowHandle, sizeCallback);
     }
 
     public void update() {
-        glfwSwapBuffers(this.getWindow());
+        glfwSwapBuffers(this.getWindowHandle());
         GLFW.glfwPollEvents();
     }
 
     public void swapBuffers() {
-        GLFW.glfwSwapBuffers(window);
+        GLFW.glfwSwapBuffers(windowHandle);
     }
 
     public boolean shouldClose() {
-        return GLFW.glfwWindowShouldClose(window);
+        return GLFW.glfwWindowShouldClose(windowHandle);
     }
 
     public void destroy() {
         input.destroy();
         sizeCallback.free();
-        GLFW.glfwWindowShouldClose(window);
-        GLFW.glfwDestroyWindow(window);
+        GLFW.glfwWindowShouldClose(windowHandle);
+        GLFW.glfwDestroyWindow(windowHandle);
         GLFW.glfwTerminate();
     }
 
@@ -151,17 +155,48 @@ public class Window {
         return title;
     }
 
-    public long getWindow() {
-        return window;
+    public long getWindowHandle() {
+        return windowHandle;
     }
 
-    // sets a perspective projection
-    public static void setPerspective(float fovy, float aspect, float near, float far) {
-        float bottom = -near * (float) Math.tan(fovy / 2);
-        float top = -bottom;
-        float left = aspect * bottom;
-        float right = -left;
-        glFrustum(left, right, bottom, top, near, far);
+
+    public static class WindowOptions {
+
+        public boolean cullFace;
+
+        public boolean showTriangles;
+
+        public boolean showFps;
+
+        public boolean compatibleProfile;
+
+        public boolean antialiasing;
+
+        public WindowOptions(boolean cullFace, boolean showTriangles, boolean showFps, boolean compatibleProfile,
+                             boolean antialiasing) {
+            this.cullFace = cullFace;
+            this.showTriangles = showTriangles;
+            this.compatibleProfile = compatibleProfile;
+            this.showFps = showFps;
+            this.antialiasing = antialiasing;
+        }
+        public WindowOptions() {
+
+        }
+    }
+
+    public WindowOptions getOptions() {
+        return opts;
+    }
+
+    public void restoreState() {
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_STENCIL_TEST);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        if (opts.cullFace) {
+            glEnable(GL_CULL_FACE);
+            glCullFace(GL_BACK);
+        }
     }
 
 

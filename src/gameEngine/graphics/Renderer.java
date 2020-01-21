@@ -1,13 +1,11 @@
 package gameEngine.graphics;
 
-import Main.Game;
-import gameEngine.FileUtil;
+import gameEngine.Utils;
 import gameEngine.GameEngine;
 import gameEngine.GameObject;
 import gameEngine.Window;
 import gameEngine.math.Matrix4f;
 import gameEngine.math.Vector3f;
-import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
@@ -26,7 +24,9 @@ public class Renderer {
 
     public void render(Window window, ArrayList<GameObject> gameObjects,
                        Vector3f ambientLight, PointLight pointLight, DirectionalLight directionalLight) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        //clears buffers
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
         shader.bind();
 
@@ -86,8 +86,8 @@ public class Renderer {
         try {
             //set up shader
             shader = new ShaderProgram(); //TODO fix paths for final
-            shader.createVertexShader(FileUtil.loadString("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/gameEngine/graphics/vertex.vs"));
-            shader.createFragmentShader(FileUtil.loadString("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/gameEngine/graphics/fragment.fs"));
+            shader.createVertexShader(Utils.loadString("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/gameEngine/graphics/vertex.vs"));
+            shader.createFragmentShader(Utils.loadString("/Users/shirleyzhang/Desktop/ics4u/3DGame/src/gameEngine/graphics/fragment.fs"));
             shader.link();
 
             //create uniforms
