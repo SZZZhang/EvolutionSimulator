@@ -1,8 +1,11 @@
 package Main;
 
+import Main.Creatures.Animal;
 import Main.Creatures.Creature;
 import Main.Creatures.Cube;
 import Main.Creatures.Pyramid;
+import gameEngine.ADT.Trait;
+import gameEngine.ADT.TraitMap;
 import gameEngine.GameEngine;
 import gameEngine.GameObject;
 import gameEngine.OBJLoader;
@@ -16,9 +19,8 @@ import java.util.ArrayList;
 public class Game {
 
     public static float CREATURE_Y_POS = 2;
-    public static int TERRAIN_WIDTH = 100, TERRAIN_LENGTH = 100;
-    public static float MAP_TO_TERRAIN_WIDTH_SHIFT = TERRAIN_WIDTH / 2f;
-    public static float MAP_TO_TERRAIN_LENGTH_SHIFT = TERRAIN_LENGTH / 2f;
+    public static int TERRAIN_WIDTH = 50, TERRAIN_LENGTH = 50;
+
     public static int MAX_PLANT_NUMBER = 20;
     public static float DEATH_SHRINK_FACTOR = 0.1f;
     private static int PYRAMID_GENERATE_INTERVAL = 20;
@@ -60,7 +62,8 @@ public class Game {
         cubeMesh.setMaterial(new Material(cubeTexture));
 
         Pyramid pyramid = new Pyramid();
-        Cube cube = new Cube(0.1f, 25  , 1, 30f);
+
+        Cube cube = new Cube(Cube.getDefaultTraits());
         //pyramid.getGameObject().setPosition(new Vector3f(0,2,0));
     }
 

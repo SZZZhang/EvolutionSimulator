@@ -17,6 +17,7 @@ public class TraitMap {
 
     public TraitMap(Trait[] arr) {
         array = arr;
+        size = arr.length;
         sortTraits();
     }
 

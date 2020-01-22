@@ -23,7 +23,7 @@ public class Window {
     private int frames;
     private static long time;
     private Input input;
-    private Vector3f bgColor = new Vector3f(0.69f, .95f, 0.9f);
+    private Vector3f bgColor = new Vector3f(1f, 1f, 1f);
     private GLFWWindowSizeCallback sizeCallback;
     private boolean isResized;
     private boolean isFullscreen;
@@ -52,15 +52,14 @@ public class Window {
             throw new IllegalStateException("Unable to initialize GLFW");
 
         // Configure
-        //Sets OpenGL Context to version 3.2 since it is not by default on Mac
-
+        //Sets OpenGL Context to version 3.2
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the windowHandle will stay hidden after creation
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the windowHandle will be resizable
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); // the windowHandle will be resizable
 
         windowHandle = GLFW.glfwCreateWindow(width, height, title, NULL, NULL);
         input = new Input();

@@ -1,5 +1,6 @@
 package Main.Creatures;
 
+import gameEngine.ADT.TraitMap;
 import gameEngine.GameObject;
 import gameEngine.graphics.Mesh;
 

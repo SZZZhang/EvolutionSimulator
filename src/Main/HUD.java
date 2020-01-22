@@ -28,7 +28,7 @@ public class HUD {
 
     private float TEXT_FONT = 20f;
 
-    private static final String FONT_NAME = "BOLD";
+    private static final String FONT_NAME = "REGULAR";
     private static final float BUTTON_RADIUS = 4f;
 
     private static final float ADD_CREATURE_BUTTONX = 600f;
@@ -43,10 +43,7 @@ public class HUD {
     private static final float ADD_CREATURE_WINDOWY = 200f;
     private static final float ADD_CREATURE_WINDOW_HEIGHT= 200f;
     private static final float ADD_CREATURE_WINDOW_WIDTH = 400f;
-    private static final float BUTTONS_PADDING = 5f;
-    private static final float BUTTONS_PADDING = 5f;
-    private static final float BUTTONS_PADDING = 5f;
-    private static final float BUTTONS_PADDING = 5f;
+
 
     private long vg;
 
@@ -117,7 +114,7 @@ public class HUD {
         }
     }
 
-    //source:
+    //method source: https://github.com/lwjglgamedev/lwjglbook/blob/master/chapter28/src/main/java/org/lwjglb/game/Hud.java
     public void init(Window window) {
 
         this.window = window;
@@ -128,7 +125,7 @@ public class HUD {
                 throw new Exception("Could not init nanovg");
             }
 
-            fontBuffer = Utils.ioResourceToByteBuffer(System.getProperty("user.dir") + "/fonts/OpenSans-Bold.ttf", 150 * 1024);
+            fontBuffer = Utils.ioResourceToByteBuffer(System.getProperty("user.dir") + "/src/assets/fonts/OpenSans-Regular.ttf", 150 * 1024);
             int font = nvgCreateFontMem(vg, FONT_NAME, fontBuffer, 0);
             if (font == -1) {
                 throw new Exception("Could not add font");
@@ -145,7 +142,6 @@ public class HUD {
     }
 
     float pos = 0;
-
     public void render(Window window) {
         nvgBeginFrame(vg, window.getWidth(), window.getHeight(), 1);
 
@@ -267,6 +263,7 @@ public class HUD {
     }
 
     private void drawCubeAttributes() {
+        //Title
 
     }
 

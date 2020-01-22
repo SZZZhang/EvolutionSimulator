@@ -68,10 +68,6 @@ public class Renderer {
             shader.setUniform("modelViewMatrix", modelViewMatrix);
 
             shader.setUniform("material", object.getMesh().getMaterial());
-            // Render the mesh for this game item
-            // shader.setUniform("colour", object.getMesh().getColour());
-            //shader.setUniform("useColour", object.getMesh().isTextured() ? 0 : 1);
-
 
             object.getMesh().render();
         }
@@ -93,18 +89,14 @@ public class Renderer {
             shader.createUniform("projectionMatrix");
             shader.createUniform("modelViewMatrix");
             shader.createUniform("texture_sampler");
-            // Create uniform for default colour and the flag that controls it
-
-// Create uniform for material
             shader.createMaterialUniform("material");
+
             // Create lighting related uniforms
             shader.createUniform("specularPower");
             shader.createUniform("ambientLight");
             shader.createPointLightUniform("pointLight");
             shader.createDirectionalLightUniform("directionalLight");
 
-
-            window.setBackgroundColor(0.0f, 0.0f, 0.0f);
 
         } catch (Exception e) {
             System.out.println("Shader not initialized properly: " + e);
