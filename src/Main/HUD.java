@@ -39,6 +39,15 @@ public class HUD {
     private static final float BUTTONS_FONT_SIZE = 20f;
     private static final float BUTTONS_PADDING = 5f;
 
+    private static final float ADD_CREATURE_WINDOWX = 40f;
+    private static final float ADD_CREATURE_WINDOWY = 200f;
+    private static final float ADD_CREATURE_WINDOW_HEIGHT= 200f;
+    private static final float ADD_CREATURE_WINDOW_WIDTH = 400f;
+    private static final float BUTTONS_PADDING = 5f;
+    private static final float BUTTONS_PADDING = 5f;
+    private static final float BUTTONS_PADDING = 5f;
+    private static final float BUTTONS_PADDING = 5f;
+
     private long vg;
 
     private NVGColor colour;
@@ -251,6 +260,27 @@ public class HUD {
         nvgText(vg, xPos + BUTTONS_PADDING, yPos + BUTTONS_PADDING, title); //renders text
     }
 
+    private void drawAddCreatureWindow() {
+        drawRectangle(ADD_CREATURE_WINDOWX, ADD_CREATURE_WINDOWY, ADD_CREATURE_WINDOW_WIDTH, ADD_CREATURE_WINDOW_HEIGHT,
+                new CHARCOAL().rgba(colour));
+
+    }
+
+    private void drawCubeAttributes() {
+
+    }
+
+    //checks if cursor hovers over a circle at (centerX, centerY)
+    private boolean hoverCircle(float centerX, float centerY, float radius) {
+        return Math.pow(Input.getMouseX() - centerX, 2) + Math.pow(Input.getMouseY() - centerY, 2) <= Math.pow(radius, 2);
+    }
+
+    //checks if cursor hovers over a rectangle at (posX, posY)
+    private boolean hoverRectangle(float posX, float posY, float width, float height) {
+        float mouseX = (float) Input.getMouseX();
+        float mouseY = (float) Input.getMouseY();
+        return (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height);
+    }
     //method source: https://github.com/LWJGL/lwjgl3/blob/master/modules/samples/src/test/java/org/lwjgl/demo/nanovg/Demo.java
     private void drawSlider(long vg, float pos, float x, float y, float w, float h) {
         NVGPaint bg = paintA, knob = paintB;
@@ -306,17 +336,6 @@ public class HUD {
         nvgRestore(vg);
     }
 
-    //checks if cursor hovers over a circle at (centerX, centerY)
-    public boolean hoverCircle(float centerX, float centerY, float radius) {
-        return Math.pow(Input.getMouseX() - centerX, 2) + Math.pow(Input.getMouseY() - centerY, 2) <= Math.pow(radius, 2);
-    }
-
-    //checks if cursor hovers over a rectangle at (posX, posY)
-    public boolean hoverRectangle(float posX, float posY, float width, float height) {
-        float mouseX = (float) Input.getMouseX();
-        float mouseY = (float) Input.getMouseY();
-        return (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height);
-    }
 
     public void cleanup() {
         nvgDelete(vg);

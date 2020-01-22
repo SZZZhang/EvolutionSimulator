@@ -2,7 +2,7 @@ package gameEngine.ADT;
 
 public class MyArrayStack implements ArrayStack {
 
-    MyArrayList stack = new MyArrayList();
+    TraitMap stack = new TraitMap();
 
     @Override
     public void push(Node n) {

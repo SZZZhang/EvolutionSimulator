@@ -13,7 +13,7 @@ import static org.lwjgl.glfw.GLFW.*;
 public class GameEngine implements Runnable {
 
     // The window handle
-    private int WINDOW_HEIGHT = 800, WINDOW_WIDTH = 800;
+    private int WINDOW_HEIGHT = 800, WINDOW_WIDTH = 1200;
 
     private Vector3f LIGHT_COLOR_WHITE = new Vector3f(1, 1, 1);
     private float LIGHT_INTENSITY = 0.1f;
@@ -36,7 +36,6 @@ public class GameEngine implements Runnable {
     private DirectionalLight directionalLight;
     private float lightAngle = 0;
 
-
     private PointLight pointLight;
 
     public void run() {
@@ -49,13 +48,11 @@ public class GameEngine implements Runnable {
         }  finally{
             cleanup();
         }
-
     }
 
     private void init() {
 
-        Window.WindowOptions windowOptions = new Window.WindowOptions(true, true, true,
-                true, true);
+        Window.WindowOptions windowOptions = new Window.WindowOptions(true, true, true, true, true);
 
         window = new Window(WINDOW_WIDTH, WINDOW_HEIGHT, "Evolution simulator", windowOptions);
         window.create();

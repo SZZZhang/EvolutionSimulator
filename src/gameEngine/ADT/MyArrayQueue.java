@@ -2,7 +2,7 @@ package gameEngine.ADT;
 
 public class MyArrayQueue implements ArrayQueue {
 
-    MyArrayList queue = new MyArrayList();
+    TraitMap queue = new TraitMap();
 
     @Override
     public void enqueue(Node node) {
