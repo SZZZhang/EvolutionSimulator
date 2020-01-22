@@ -64,6 +64,7 @@ public class Game {
         Pyramid pyramid = new Pyramid();
 
         Cube cube = new Cube(Cube.getDefaultTraits());
+        cube.add();
         //pyramid.getGameObject().setPosition(new Vector3f(0,2,0));
     }
 

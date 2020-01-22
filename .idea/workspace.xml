@@ -2,64 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55caa3ce-2aeb-479f-ab36-997fab3963c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/OpenSans-Regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/OpenSans-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/fonts/OpenSans-Bold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/ArrayListInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/ArrayQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/ArrayStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/LListQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/LListStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/LinkedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/LinkedListInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/MyArrayList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/MyArrayQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/MyArrayStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/MyLListQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/MyLListStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/MyNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/ADT/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Camera.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/GameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/GameEngine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window$WindowOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window$WindowOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/Window.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/GameEngine/graphics/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/GameEngine/graphics/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/Creatures/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/Creatures/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/Creatures/Cube.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/Creatures/Cube.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$CHARCOAL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$CHARCOAL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$COLOUR.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$COLOUR.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$GREY.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$GREY.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$WHITE.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/HUD$WHITE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/HUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/HUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/Main/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/Main/Terrain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DGame/assets/Terrain.obj" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DGame/assets/Terrain.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Creatures/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Creatures/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Creatures/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Creatures/Creature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Creatures/Cube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Creatures/Cube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/HUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/HUD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Terrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/Terrain.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/Terrain2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/ArrayListInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/ArrayQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/ArrayStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/LListQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/LListStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/LinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/LinkedListInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/MyArrayQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/MyArrayStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/MyLListQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/MyLListStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/MyNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/Trait.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/ADT/Trait.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/ADT/TraitMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/ADT/TraitMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameEngine/graphics/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/graphics/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameEngine/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameEngine/GameEngine.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,8 +22,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/gameEngine/GameEngine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="48" selection-start-line="48" selection-end-line="48" />
+                <state relative-caret-position="334">
+                  <caret line="108" selection-start-line="108" selection-end-line="108" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -98,11 +45,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Main/HUD.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1923">
-                  <caret line="265" column="8" selection-start-line="265" selection-start-column="8" selection-end-line="265" selection-end-column="8" />
+                <state relative-caret-position="432">
+                  <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#2810#2811#0" expanded="true" />
@@ -111,6 +58,8 @@
                     <element signature="e#2985#2986#0" expanded="true" />
                     <element signature="e#3063#3064#0" expanded="true" />
                     <element signature="e#3112#3113#0" expanded="true" />
+                    <element signature="e#3231#3232#0" expanded="true" />
+                    <element signature="e#3277#3278#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -119,7 +68,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/gameEngine/ADT/Trait.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="316">
+                <state relative-caret-position="799">
                   <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
                   <folding>
                     <element signature="e#0#711#0" expanded="true" />
@@ -164,8 +113,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Main/Creatures/Animal.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="78">
-                  <caret line="36" selection-start-line="36" selection-end-line="36" />
+                <state relative-caret-position="316">
+                  <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#5447#5448#0" expanded="true" />
@@ -186,18 +135,21 @@
                     <element signature="e#6068#6069#0" expanded="true" />
                     <element signature="e#6149#6150#0" expanded="true" />
                     <element signature="e#6168#6169#0" expanded="true" />
+                    <element signature="e#6547#6548#0" expanded="true" />
+                    <element signature="e#6576#6577#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Main/Creatures/Cube.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-266">
-                  <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+                <state relative-caret-position="248">
+                  <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#1169#1170#0" expanded="true" />
                     <element signature="e#1204#1205#0" expanded="true" />
                     <element signature="e#1237#1238#0" expanded="true" />
                   </folding>
@@ -220,8 +172,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Renderer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="378">
-                  <caret line="77" column="35" lean-forward="true" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
+                <state relative-caret-position="311">
+                  <caret line="66" selection-start-line="66" selection-end-line="66" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -266,11 +218,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Main/Game.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
-                  <caret line="28" column="67" lean-forward="true" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+                <state relative-caret-position="142">
+                  <caret line="66" column="19" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -290,11 +242,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Main/HUD.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="266" column="8" selection-start-line="266" selection-start-column="8" selection-end-line="266" selection-end-column="8" />
+                <state relative-caret-position="1440">
+                  <caret line="160" column="2" lean-forward="true" selection-start-line="160" selection-start-column="2" selection-end-line="160" selection-end-column="2" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -316,7 +268,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>project</find>
       <find>mesh</find>
       <find>lightAngle</find>
       <find>colo</find>
@@ -341,11 +292,12 @@
       <find>viewMatrix</find>
       <find>ambient</find>
       <find>windowHandle</find>
-      <find>@Override</find>
-      <find>color</find>
       <find>charcoal</find>
       <find>fps</find>
       <find>fontName</find>
+      <find>@Override</find>
+      <find>color</find>
+      <find>cube</find>
     </findStrings>
     <replaceStrings>
       <replace>Matrix3D</replace>
@@ -399,27 +351,26 @@
         <option value="$PROJECT_DIR$/src/gameEngine/math/Matrix4f.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/math/Vector3f.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/graphics/fragment.fs" />
-        <option value="$PROJECT_DIR$/src/gameEngine/GameEngine.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/ADT/Map.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/ADT/MyArrayList.java" />
         <option value="$PROJECT_DIR$/src/Main/Creatures/Creature.java" />
-        <option value="$PROJECT_DIR$/src/Main/Creatures/Cube.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/ADT/TraitMap.java" />
-        <option value="$PROJECT_DIR$/src/Main/Creatures/Animal.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/ADT/Trait.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/graphics/Renderer.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/Camera.java" />
         <option value="$PROJECT_DIR$/src/gameEngine/Window.java" />
         <option value="$PROJECT_DIR$/src/Main/Terrain.java" />
-        <option value="$PROJECT_DIR$/src/Main/Game.java" />
         <option value="$PROJECT_DIR$/src/Main/HUD.java" />
+        <option value="$PROJECT_DIR$/src/Main/Creatures/Animal.java" />
+        <option value="$PROJECT_DIR$/src/gameEngine/GameEngine.java" />
+        <option value="$PROJECT_DIR$/src/Main/Game.java" />
+        <option value="$PROJECT_DIR$/src/Main/Creatures/Cube.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1440" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -450,33 +401,6 @@
               <item name="3DGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="3DGame" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="fonts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3DGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3DGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gameEngine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3DGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3DGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gameEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="ADT" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3DGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3DGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gameEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3DGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3DGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -494,7 +418,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579664770154" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579731032686" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -560,10 +484,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11661342" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15665236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -573,14 +496,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.26435643" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946752" weight="0.30396038" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.27920792" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33975902" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946752" weight="0.27722773" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49893504" weight="0.06732673" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49893504" visible="true" weight="0.4361446" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5005325" side_tool="true" weight="0.20396039" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32970297" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.02970297" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.036144577" />
       <window_info anchor="bottom" id="Floobits" order="11" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -631,10 +554,10 @@
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main/Creatures/Animal.java</url>
-          <line>35</line>
+          <url>file://$PROJECT_DIR$/src/gameEngine/GameEngine.java</url>
+          <line>108</line>
           <properties />
-          <option name="timeStamp" value="82" />
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -646,11 +569,23 @@
         <watch expression="zBorderMin" language="JAVA" />
         <watch expression="Game.creatures" language="JAVA" />
         <watch expression="GameEngine.camera.getRotation()" language="JAVA" />
+        <watch expression="yPos" language="JAVA" />
+        <watch expression="Input.getMouseX()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>Input.getMouseX()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>yPos</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>GameEngine.camera.getRotation()</expression-string>
         <language-id>JAVA</language-id>
@@ -1038,16 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/GameEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gameEngine/ADT/TraitMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-246">
@@ -1059,82 +984,6 @@
             <element signature="e#1466#1467#0" expanded="true" />
             <element signature="e#1974#1975#0" expanded="true" />
             <element signature="e#2008#2009#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Creatures/Animal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5447#5448#0" expanded="true" />
-            <element signature="e#5475#5476#0" expanded="true" />
-            <element signature="e#5516#5517#0" expanded="true" />
-            <element signature="e#5550#5551#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
-            <element signature="e#5625#5626#0" expanded="true" />
-            <element signature="e#5682#5683#0" expanded="true" />
-            <element signature="e#5732#5733#0" expanded="true" />
-            <element signature="e#5515#5516#0" expanded="true" />
-            <element signature="e#5543#5544#0" expanded="true" />
-            <element signature="e#5605#5606#0" expanded="true" />
-            <element signature="e#5640#5641#0" expanded="true" />
-            <element signature="e#5685#5686#0" expanded="true" />
-            <element signature="e#5714#5715#0" expanded="true" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6068#6069#0" expanded="true" />
-            <element signature="e#6149#6150#0" expanded="true" />
-            <element signature="e#6168#6169#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Creatures/Cube.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-266">
-          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1204#1205#0" expanded="true" />
-            <element signature="e#1237#1238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/ADT/Trait.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="e#0#711#0" expanded="true" />
-            <element signature="e#248#249#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#341#342#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-            <element signature="e#281#282#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#349#350#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Renderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="77" column="35" lean-forward="true" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1168,32 +1017,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="28" column="67" lean-forward="true" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+        <state relative-caret-position="-408">
+          <caret line="47" column="56" lean-forward="true" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4475#4476#0" expanded="true" />
+            <element signature="e#4511#4512#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameEngine/Window.java">
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/ADT/Trait.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="799">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#0#711#0" expanded="true" />
+            <element signature="e#248#249#0" expanded="true" />
+            <element signature="e#284#285#0" expanded="true" />
+            <element signature="e#341#342#0" expanded="true" />
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#466#467#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#223#224#0" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+            <element signature="e#281#282#0" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Creatures/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5447#5448#0" expanded="true" />
+            <element signature="e#5475#5476#0" expanded="true" />
+            <element signature="e#5516#5517#0" expanded="true" />
+            <element signature="e#5550#5551#0" expanded="true" />
+            <element signature="e#5589#5590#0" expanded="true" />
+            <element signature="e#5625#5626#0" expanded="true" />
+            <element signature="e#5682#5683#0" expanded="true" />
+            <element signature="e#5732#5733#0" expanded="true" />
+            <element signature="e#5515#5516#0" expanded="true" />
+            <element signature="e#5543#5544#0" expanded="true" />
+            <element signature="e#5605#5606#0" expanded="true" />
+            <element signature="e#5640#5641#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
+            <element signature="e#5714#5715#0" expanded="true" />
+            <element signature="e#6024#6025#0" expanded="true" />
+            <element signature="e#6068#6069#0" expanded="true" />
+            <element signature="e#6149#6150#0" expanded="true" />
+            <element signature="e#6168#6169#0" expanded="true" />
+            <element signature="e#6547#6548#0" expanded="true" />
+            <element signature="e#6576#6577#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/HUD.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="266" column="8" selection-start-line="266" selection-start-column="8" selection-end-line="266" selection-end-column="8" />
+        <state relative-caret-position="432">
+          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2810#2811#0" expanded="true" />
+            <element signature="e#2856#2857#0" expanded="true" />
+            <element signature="e#2936#2937#0" expanded="true" />
+            <element signature="e#2985#2986#0" expanded="true" />
+            <element signature="e#3063#3064#0" expanded="true" />
+            <element signature="e#3112#3113#0" expanded="true" />
+            <element signature="e#3231#3232#0" expanded="true" />
+            <element signature="e#3277#3278#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/GameEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameEngine/graphics/Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="66" column="19" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Creatures/Cube.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1204#1205#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
           </folding>
         </state>
       </provider>

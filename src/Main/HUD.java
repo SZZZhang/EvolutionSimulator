@@ -1,5 +1,8 @@
 package Main;
 
+import Main.Creatures.Cube;
+import gameEngine.ADT.Trait;
+import gameEngine.ADT.TraitMap;
 import gameEngine.Input;
 import gameEngine.Utils;
 import gameEngine.Window;
@@ -39,30 +42,30 @@ public class HUD {
     private static final float BUTTONS_FONT_SIZE = 20f;
     private static final float BUTTONS_PADDING = 5f;
 
-    private static final float ADD_CREATURE_WINDOWX = 40f;
-    private static final float ADD_CREATURE_WINDOWY = 200f;
-    private static final float ADD_CREATURE_WINDOW_HEIGHT= 200f;
-    private static final float ADD_CREATURE_WINDOW_WIDTH = 400f;
+    private static final float ADD_CREATURE_WINDOWX = 1000f;
+    private static final float ADD_CREATURE_WINDOWY = 100f;
+    private static final float ADD_CREATURE_WINDOW_HEIGHT = 200f;
+    private static final float ADD_CREATURE_WINDOW_WIDTH = 200f;
 
+    private static final float ATTRIBUTES_INTERFACE_WIDTH = 100f;
+    private static final float ATTRIBUTES_INTERFACE_SLIDER_WIDTH = 100f;
+    private static final float ATTRIBUTES_INTERFACE_PADDING = 10f;
+    private static final float ATTRIBUTES_INTERFACE_FONT_SIZE = 20f;
+    private static final float ATTRIBUTES_INTERFACE_SLIDER_HEIGHT = 20f;
+    private static final float ATTRIBUTES_ROUND_DECIMAL = 10f; //round to one decimal place
+    private static final float ATTRIBUTES_KNOB_RADIUS = 7f;
 
     private long vg;
-
     private NVGColor colour;
-
     private ByteBuffer fontBuffer;
-
     private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
     private DoubleBuffer posx;
-
     private DoubleBuffer posy;
-
     private int counter;
-
-    private NVGColor charcoalColour;
-
     private Window window;
+    private Cube cube;
 
+    private boolean showAddCreatureWindow = false;
     static final NVGColor
             colourA = NVGColor.create(),
             colorB = NVGColor.create(),
@@ -97,20 +100,26 @@ public class HUD {
 
     //colour constants
     private static class CHARCOAL extends COLOUR {
-        public CHARCOAL() {
+        private CHARCOAL() {
             super(58, 72, 97, 255);
         }
     }
 
     private static class WHITE extends COLOUR {
-        public WHITE() {
+        private WHITE() {
             super(255, 255, 255, 255);
         }
     }
 
     private static class GREY extends COLOUR {
-        public GREY() {
+        private GREY() {
             super(200, 200, 200, 255);
+        }
+    }
+
+    private static class BLACK extends COLOUR {
+        private BLACK() {
+            super(0, 0, 0, 255);
         }
     }
 
@@ -136,12 +145,16 @@ public class HUD {
             posy = MemoryUtil.memAllocDouble(1);
 
             counter = 0;
+
+            cube = new Cube(Cube.getDefaultTraits());
+
         } catch (Exception e) {
             System.out.println("Failed to initialize HUD: " + e);
         }
     }
 
     float pos = 0;
+
     public void render(Window window) {
         nvgBeginFrame(vg, window.getWidth(), window.getHeight(), 1);
 
@@ -157,11 +170,17 @@ public class HUD {
         if (hoverAddCreatureButton) {
             drawButton(ADD_CREATURE_BUTTONX, ADD_CREATURE_BUTTONY, BUTTONS_WIDTH, BUTTONS_HEIGHT, BUTTONS_FONT_SIZE,
                     FONT_NAME, new CHARCOAL().rgba(colour), new GREY().rgba(colourA), "Add Creature");
+            if (Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
+                showAddCreatureWindow = true;
+            }
         } else {
             drawButton(ADD_CREATURE_BUTTONX, ADD_CREATURE_BUTTONY, BUTTONS_WIDTH, BUTTONS_HEIGHT, BUTTONS_FONT_SIZE,
                     FONT_NAME, new CHARCOAL().rgba(colour), new WHITE().rgba(colourA), "Add Creature");
         }
 
+        if (showAddCreatureWindow) {
+            drawAddCreatureWindow();
+        }
 
         // Upper ribbon
         nvgBeginPath(vg);
@@ -193,7 +212,6 @@ public class HUD {
         nvgFontSize(vg, 25.0f);
         nvgFontFace(vg, FONT_NAME);
         nvgTextAlign(vg, NVG_ALIGN_CENTER);
-
 
         if (hover) {
             nvgFillColor(vg, rgba(0x00, 0x00, 0x00, 255, colour));
@@ -260,11 +278,60 @@ public class HUD {
         drawRectangle(ADD_CREATURE_WINDOWX, ADD_CREATURE_WINDOWY, ADD_CREATURE_WINDOW_WIDTH, ADD_CREATURE_WINDOW_HEIGHT,
                 new CHARCOAL().rgba(colour));
 
+        drawAttributes("Cube", cube.getTraits(), ADD_CREATURE_WINDOWX + ATTRIBUTES_INTERFACE_PADDING,
+                ADD_CREATURE_WINDOWY + ATTRIBUTES_INTERFACE_PADDING);
     }
 
-    private void drawCubeAttributes() {
-        //Title
+    private void renderText(String text, String font, float fontSize, float xPos, float yPos, NVGColor colour) {
+        nvgFontSize(vg, fontSize); //sets font size
+        nvgFontFace(vg, font); //sets font
+        nvgTextAlign(vg, NVG_ALIGN_LEFT | NVG_ALIGN_TOP); //sets text alignment
+        nvgFillColor(vg, colour); //sets text colour
+        nvgText(vg, xPos, yPos, text);
+    }
 
+    private void drawAttributes(String title, TraitMap map, float xPos, float yPos) {
+        //title
+        nvgFontSize(vg, ATTRIBUTES_INTERFACE_FONT_SIZE); //sets font size
+        nvgFontFace(vg, FONT_NAME); //sets font
+        nvgTextAlign(vg, NVG_ALIGN_LEFT | NVG_ALIGN_TOP); //sets text alignment
+        nvgFillColor(vg, new BLACK().rgba(colour)); //sets text colour
+        nvgText(vg, xPos + ATTRIBUTES_INTERFACE_PADDING, yPos + ATTRIBUTES_INTERFACE_PADDING, title);
+
+        float sliderX = xPos + ATTRIBUTES_INTERFACE_PADDING;
+        float sliderY = yPos + ATTRIBUTES_INTERFACE_PADDING * 2 + ATTRIBUTES_INTERFACE_FONT_SIZE;
+
+        for (int i = 0; i < map.size(); i++) {
+
+            float traitRange = map.getTrait(i).getMaxTraitValue() - map.getTrait(i).getMinTraitValue();
+            float sliderKnobPos = (map.getTrait(i).getValue() - map.getTrait(i).getMinTraitValue()) / (traitRange);
+
+            //x and y coordinate of the center of the knob
+            float xCenter = sliderKnobPos * ATTRIBUTES_INTERFACE_SLIDER_WIDTH + sliderX;
+            float yCenter = sliderY + ATTRIBUTES_KNOB_RADIUS;
+
+            //if user clicks on slider knob
+            if (hoverCircle(xCenter, yCenter, ATTRIBUTES_KNOB_RADIUS) && Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
+                sliderKnobPos = (float) (Input.getMouseX() - sliderX) * (traitRange) /
+                        (ATTRIBUTES_INTERFACE_SLIDER_WIDTH * traitRange);
+                map.getTrait(i).setValue(((float) Input.getMouseX() - sliderX) * traitRange /
+                        ATTRIBUTES_INTERFACE_SLIDER_WIDTH + map.getTrait(i).getMinTraitValue());
+
+            }
+            //draws slider
+            drawSlider(vg, sliderKnobPos, sliderX, sliderY,
+                    ATTRIBUTES_INTERFACE_SLIDER_WIDTH, ATTRIBUTES_INTERFACE_SLIDER_HEIGHT);
+
+            //renders value of attribute
+            renderText(Float.toString(Math.round(map.getTrait(i).getValue() * ATTRIBUTES_ROUND_DECIMAL) /
+                            ATTRIBUTES_ROUND_DECIMAL), FONT_NAME, ATTRIBUTES_INTERFACE_FONT_SIZE,
+                    sliderX + ATTRIBUTES_INTERFACE_PADDING + ATTRIBUTES_INTERFACE_SLIDER_WIDTH, sliderY,
+                    new WHITE().rgba(colourA));
+
+
+            sliderY += ATTRIBUTES_INTERFACE_SLIDER_HEIGHT + ATTRIBUTES_INTERFACE_PADDING;
+
+        }
     }
 
     //checks if cursor hovers over a circle at (centerX, centerY)
@@ -278,6 +345,7 @@ public class HUD {
         float mouseY = (float) Input.getMouseY();
         return (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height);
     }
+
     //method source: https://github.com/LWJGL/lwjgl3/blob/master/modules/samples/src/test/java/org/lwjgl/demo/nanovg/Demo.java
     private void drawSlider(long vg, float pos, float x, float y, float w, float h) {
         NVGPaint bg = paintA, knob = paintB;
@@ -285,7 +353,6 @@ public class HUD {
         float kr = (int) (h * 0.25f);
 
         nvgSave(vg);
-        //nvgClearState(vg);
 
         // Slot
         nvgBoxGradient(vg, x, cy - 2 + 1, w, 4, 2, 2, rgba(0, 0, 0, 32, colourA), rgba(0, 0, 0, 128, colorB), bg);
@@ -294,7 +361,7 @@ public class HUD {
         nvgFillPaint(vg, bg);
         nvgFill(vg);
 
-
+        /*
         float xcenter = pos * w + x;
         float ycenter = y + kr;
         int radius = 10;
@@ -305,7 +372,7 @@ public class HUD {
 
         if (hover && Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
             pos = (float) (mouseX - x) / w;
-        }
+        }*/
 
         // Knob Shadow
         nvgRadialGradient(vg, x + (int) (pos * w), cy + 1, kr - 3, kr + 3, rgba(0, 0, 0, 64, colourA), rgba(0, 0, 0, 0, colorB), bg);

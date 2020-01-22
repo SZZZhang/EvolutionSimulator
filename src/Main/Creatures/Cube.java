@@ -30,8 +30,10 @@ public class Cube extends Animal {
     GameObject cubeObject;
 
     public Cube(TraitMap traits) {
-
         super(traits, Game.cubeMesh, NUTRITIONAL_VALUE, MAX_HUNGER_BAR);
+    }
+
+    public void add() {
         cubeObject = new GameObject(Game.cubeMesh);
         cubeObject.setPosition(new Vector3f(0, Game.CREATURE_Y_POS, 0));
         Game.gameObjects.add(cubeObject);
@@ -39,10 +41,10 @@ public class Cube extends Animal {
 
         //update population information
         cubePopulation++;
-        sumOfCubeSensoryRadius += traits.getTrait(Animal.SENSORY_RADIUS_TRAIT_NAME).getValue();
-        sumOfCubeSpeed += traits.getTrait(Animal.SPEED_TRAIT_NAME).getValue();
-    }
+        sumOfCubeSensoryRadius += super.getTraits().getTrait(Animal.SENSORY_RADIUS_TRAIT_NAME).getValue();
+        sumOfCubeSpeed += super.getTraits().getTrait(Animal.SPEED_TRAIT_NAME).getValue();
 
+    }
     @Override
     public boolean isPrey() {
         return true;

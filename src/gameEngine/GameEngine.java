@@ -104,7 +104,6 @@ public class GameEngine implements Runnable {
         while (!glfwWindowShouldClose(window.getWindowHandle())) {
             long loopStartTime = System.currentTimeMillis();
 
-            gameUpdate();
             timeUpdate();
             camera.update();
             renderer.render(window, objects, ambientLight, pointLight, directionalLight);
@@ -131,10 +130,6 @@ public class GameEngine implements Runnable {
         }
     }
 
-    private void gameUpdate() {
-        // Update directional light direction, intensity and colour
-
-    }
 
     private void cleanup() {
         renderer.cleanup(objects);

@@ -39,6 +39,7 @@ public abstract class Animal implements Creature {
         this.nutritionalValue = nutritionalValue;
         this.mesh = mesh;
         this.currentHungerBar = maxHungerBar;
+        this.traits = traits;
     }
 
     @Override
@@ -182,6 +183,10 @@ public abstract class Animal implements Creature {
     @Override
     public void setNutritionalValue(float nutritionalValue) {
         this.nutritionalValue = nutritionalValue;
+    }
+
+    public TraitMap getTraits() {
+        return traits;
     }
 
     public abstract boolean isFood(Creature creature);
